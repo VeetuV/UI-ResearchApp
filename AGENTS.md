@@ -12,18 +12,18 @@ This repository is a university UX research web app that measures trust across d
 - Near-future backend: Supabase (not connected yet).
 - Current flow:
 	- Index page (`/`) is an intro/instructions page.
-	- Study pages are neutral and sequential: `/variants/examplepage1`, `/variants/examplepage2`, `/variants/examplepage3`.
+	- Study pages are neutral and sequential: `/variants/studypage1`, `/variants/studypage2`, `/variants/studypage3`.
 	- A floating survey button is visible on study pages (hidden on `/`).
 	- Survey modal has Back and Next controls:
 		- Back returns to `/`.
-		- Next advances to the next example page.
+		- Next advances to the next study page.
 
 ## Research Constraints
 
 When editing UI or copy, keep participant bias low:
 
 - Do not expose descriptive category labels on study pages.
-- Prefer neutral naming (examplepage1/2/3) in routing and visible text.
+- Prefer neutral naming (studypage1/2/3) in routing and visible text.
 - Avoid adding extra menus/navigation that can influence participant behavior.
 - Keep the survey trigger and flow consistent across pages.
 

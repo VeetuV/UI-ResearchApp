@@ -27,6 +27,7 @@ type Messages = {
   survey: {
     title: string;
     description: string;
+    notConfigured: string;
     close: string;
     back: string;
     next: string;
@@ -66,7 +67,8 @@ const messages: Record<Locale, Messages> = {
     },
     survey: {
       title: "UX-luottamuskysely",
-      description: "Tahan lisataan myohemmin varsinainen kyselylomake.",
+      description: "Tähän lisätään myöhemmin varsinainen kyselylomake.",
+      notConfigured: "Aseta NEXT_PUBLIC_WEBROPOL_SURVEY_URL, jotta kysely upotetaan tähän.",
       close: "Sulje",
       back: "Takaisin",
       next: "Seuraava",
@@ -75,9 +77,9 @@ const messages: Record<Locale, Messages> = {
       openSurvey: "Avaa kysely",
     },
     pages: {
-      page1Title: "Esimerkkisivu 1",
-      page2Title: "Esimerkkisivu 2",
-      page3Title: "Esimerkkisivu 3",
+      page1Title: "Tutkimussivu 1",
+      page2Title: "Tutkimussivu 2",
+      page3Title: "Tutkimussivu 3",
       pageBody: "Tarkastele sivua normaalisti ja käytä kelluvaa kyselypainiketta vastataksesi.",
     },
   },
@@ -94,10 +96,10 @@ const messages: Record<Locale, Messages> = {
       english: "English",
     },
     corporate: {
-      badge: "Example Page",
-      title: "Trusted Service Experience",
-      body: "This page acts as a study demo interface. Review your impression, then open the survey.",
-      rateButton: "Rate this Design",
+      badge: "Sample Page",
+      title: "Sample Page Experience",
+      body: "This page acts as a study demo. Review your impression and then open the survey.",
+      rateButton: "Rate This Page",
       navOverview: "Overview",
       navFeatures: "Features",
       navBack: "Back",
@@ -105,6 +107,7 @@ const messages: Record<Locale, Messages> = {
     survey: {
       title: "UX Trust Survey",
       description: "The full questionnaire form will be embedded here later.",
+      notConfigured: "Set NEXT_PUBLIC_WEBROPOL_SURVEY_URL to embed the survey here.",
       close: "Close",
       back: "Back",
       next: "Next",
@@ -113,9 +116,9 @@ const messages: Record<Locale, Messages> = {
       openSurvey: "Open Survey",
     },
     pages: {
-      page1Title: "Example Page 1",
-      page2Title: "Example Page 2",
-      page3Title: "Example Page 3",
+      page1Title: "Study Page 1",
+      page2Title: "Study Page 2",
+      page3Title: "Study Page 3",
       pageBody: "Review the page naturally and use the floating survey button to submit your response.",
     },
   },

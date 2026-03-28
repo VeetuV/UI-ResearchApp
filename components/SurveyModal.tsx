@@ -4,15 +4,17 @@ import { useLocale } from "@/lib/LocaleContext";
 import { usePathname, useRouter } from "next/navigation";
 
 const studyRoutes = [
-	"/variants/examplepage1",
-	"/variants/examplepage2",
-	"/variants/examplepage3",
+	"/variants/studypage1",
+	"/variants/studypage2",
+	"/variants/studypage3",
 ];
 
 type SurveyModalProps = {
 	isOpen: boolean;
 	onClose: () => void;
 };
+
+const webropolSurveyUrl = process.env.NEXT_PUBLIC_WEBROPOL_SURVEY_URL?.trim() ?? "";
 
 export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 	const { messages } = useLocale();
@@ -37,12 +39,13 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 		router.push(studyRoutes[currentRouteIndex + 1]);
 	};
 
-	if (!isOpen) {
-		return null;
-	}
-
 	return (
-		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+		<div
+			className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition ${
+				isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+			}`}
+			aria-hidden={!isOpen}
+		>
 			<div
 				className="absolute inset-0 bg-black/60"
 				aria-hidden="true"
@@ -66,6 +69,22 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 					>
 						{messages.survey.close}
 					</button>
+				</div>
+
+				<div className="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+					{webropolSurveyUrl ? (
+						<iframe
+							title={messages.survey.title}
+							src={webropolSurveyUrl}
+							className="h-[420px] w-full"
+							loading="lazy"
+							referrerPolicy="strict-origin-when-cross-origin"
+						/>
+					) : (
+						<p className="p-4 text-sm leading-6 text-slate-600">
+							{messages.survey.notConfigured}
+						</p>
+					)}
 				</div>
 
 				<div className="mt-6 flex items-center justify-between">

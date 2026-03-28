@@ -15,9 +15,9 @@ The goal is to measure user trust across multiple interface variants while keepi
 
 1. Participant lands on the intro page (`/`) and reads instructions.
 2. Participant starts the study and goes to neutral pages in sequence:
-	- `/variants/examplepage1`
-	- `/variants/examplepage2`
-	- `/variants/examplepage3`
+	- `/variants/studypage1`
+	- `/variants/studypage2`
+	- `/variants/studypage3`
 3. On study pages, a floating survey button opens the survey modal.
 4. In the survey modal:
 	- `Back` returns to index (`/`)
@@ -33,16 +33,16 @@ The goal is to measure user trust across multiple interface variants while keepi
 
 To reduce bias in study outcomes:
 
-- Page routes and labels use neutral naming (`examplepage1`, `examplepage2`, `examplepage3`)
+- Page routes and labels use neutral naming (`studypage1`, `studypage2`, `studypage3`)
 - Descriptive category labels are avoided in participant-facing flow
 - Extra navigation is intentionally minimal
 
 ## Project Structure (Key Files)
 
 - `app/page.tsx`: Intro page + language switch + start study action
-- `app/variants/examplepage1/page.tsx`: Study page 1
-- `app/variants/examplepage2/page.tsx`: Study page 2
-- `app/variants/examplepage3/page.tsx`: Study page 3
+- `app/variants/studypage1/page.tsx`: Study page 1
+- `app/variants/studypage2/page.tsx`: Study page 2
+- `app/variants/studypage3/page.tsx`: Study page 3
 - `components/FloatingSurveyButton.tsx`: Floating survey trigger on study pages
 - `components/SurveyModal.tsx`: Survey modal UI + Back/Next behavior
 - `lib/i18n.ts`: Locale messages and defaults
@@ -58,6 +58,25 @@ npm run dev
 ```
 
 Then open: http://localhost:3000
+
+## Webropol Survey Embed
+
+You can embed a Webropol survey in the modal via iframe by setting:
+
+```bash
+NEXT_PUBLIC_WEBROPOL_SURVEY_URL="https://your-webropol-survey-url"
+```
+
+If this value is missing, the modal shows a configuration hint instead of the iframe.
+
+Note: the survey URL must allow iframe embedding from your app domain.
+
+## Environment Variables
+
+Create `.env.local` and configure:
+
+- `NEXT_PUBLIC_WEBROPOL_SURVEY_URL`: required to load the Webropol iframe.
+
 
 ## Notes For Contributors
 
