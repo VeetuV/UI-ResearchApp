@@ -66,7 +66,7 @@ const messages: Record<Locale, Messages> = {
       navBack: "Takaisin",
     },
     survey: {
-      title: "UX-luottamuskysely",
+      title: "Arviointikysely",
       description: "Tähän lisätään myöhemmin varsinainen kyselylomake.",
       notConfigured: "Aseta NEXT_PUBLIC_WEBROPOL_SURVEY_URL, jotta kysely upotetaan tähän.",
       close: "Sulje",
@@ -105,7 +105,7 @@ const messages: Record<Locale, Messages> = {
       navBack: "Back",
     },
     survey: {
-      title: "UX Trust Survey",
+      title: "UX Survey",
       description: "The full questionnaire form will be embedded here later.",
       notConfigured: "Set NEXT_PUBLIC_WEBROPOL_SURVEY_URL to embed the survey here.",
       close: "Close",

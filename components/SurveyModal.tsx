@@ -41,65 +41,56 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
 	return (
 		<div
-			className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition ${
-				isOpen ? "opacity-100" : "pointer-events-none opacity-0"
+			className={`fixed inset-0 z-50 flex items-start justify-center p-2 sm:p-4 transition ${
+			isOpen ? "opacity-100" : "pointer-events-none opacity-0"
 			}`}
 			aria-hidden={!isOpen}
 		>
-			<div
-				className="absolute inset-0 bg-black/60"
-				aria-hidden="true"
-				onClick={onClose}
-			/>
+			<div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
-			<div className="relative z-10 w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl sm:p-8">
-				<div className="flex items-start justify-between gap-4">
+			<div className="relative z-10 flex h-[95vh] w-full max-w-5xl flex-col rounded-2xl bg-white p-6 shadow-2xl sm:p-8">
+				
+				<div className="flex flex-none items-start justify-between gap-4">
 					<div>
-						<h2 className="text-2xl font-semibold text-slate-900">
-							{messages.survey.title}
-						</h2>
-						<p className="mt-2 text-sm leading-6 text-slate-600">
-							{messages.survey.description}
-						</p>
+						<h2 className="text-2xl font-semibold text-slate-900">{messages.survey.title}</h2>
+						<p className="mt-1 text-sm text-slate-600">{messages.survey.description}</p>
 					</div>
-					<button
-						type="button"
-						onClick={onClose}
-						className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
-					>
+					<button onClick={onClose} className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700">
 						{messages.survey.close}
 					</button>
 				</div>
 
-				<div className="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+				{/* Iframe Container for webropol survey */}
+				<div className="relative mt-6 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
 					{webropolSurveyUrl ? (
 						<iframe
 							title={messages.survey.title}
 							src={webropolSurveyUrl}
-							className="h-[420px] w-full"
+							style={{
+								width: '125%', 
+								height: '125%', // Uses 125% of the dynamic parent height
+								transform: 'scale(0.8)', 
+								transformOrigin: '0 0',
+								position: 'absolute',
+								top: 0,
+								left: 0
+							}}
 							loading="lazy"
-							referrerPolicy="strict-origin-when-cross-origin"
 						/>
 					) : (
-						<p className="p-4 text-sm leading-6 text-slate-600">
-							{messages.survey.notConfigured}
-						</p>
+						<p className="p-4 text-sm text-slate-600">{messages.survey.notConfigured}</p>
 					)}
 				</div>
 
-				<div className="mt-6 flex items-center justify-between">
-					<button
-						type="button"
-						onClick={handleBack}
-						className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
-					>
+				{/* Footer for buttons */}
+				<div className="mt-6 flex flex-none items-center justify-between">
+					<button onClick={handleBack} className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700">
 						{messages.survey.back}
 					</button>
 					<button
-						type="button"
 						onClick={handleNext}
 						disabled={!hasNext}
-						className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
+						className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:bg-slate-300"
 					>
 						{messages.survey.next}
 					</button>
