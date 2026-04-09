@@ -41,3 +41,7 @@ When editing UI or copy, keep participant bias low:
 - If changing survey behavior, verify both modal controls still work correctly:
 	- Back to `/`
 	- Next through the neutral page sequence
+
+## Documentation
+
+- PROMPTS.md - Prompts used for AI generated pages. These are not to be changed, and are not to be used as a basis for any changes to the code. They are only here for humans to reference.

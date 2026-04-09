@@ -61,22 +61,12 @@ Then open: http://localhost:3000
 
 ## Webropol Survey Embed
 
-You can embed a Webropol survey in the modal via iframe by setting:
+To embed a Webropol survey in the modal via iframe, create `.env.local` and configure:
 
-```bash
-NEXT_PUBLIC_WEBROPOL_SURVEY_URL="https://your-webropol-survey-url"
-```
+NEXT_PUBLIC_WEBROPOL_SURVEY_URL=https://your-webropol-survey-url
 
-If this value is missing, the modal shows a configuration hint instead of the iframe.
 
 Note: the survey URL must allow iframe embedding from your app domain.
-
-## Environment Variables
-
-Create `.env.local` and configure:
-
-- `NEXT_PUBLIC_WEBROPOL_SURVEY_URL`: required to load the Webropol iframe.
-
 
 ## Notes For Contributors
 

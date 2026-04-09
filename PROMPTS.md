@@ -1,0 +1,3 @@
+## Prompts used for AI generated pages
+
+Read Agents.md. Create a new page replacing studypage1. Write a complete Next.js (App Router) landing page using Tailwind CSS and TypeScript for a massage service. Design and structure it entirely based on your own assumptions of what makes the best website for this service. Choose the layout, color palette, typography, and copy yourself without asking for my preferences. Provide the complete, functional code.
