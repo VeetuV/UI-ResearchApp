@@ -11,3 +11,19 @@ Ok here for the feedback. The UI is in black and white. which isn't terrible, bu
 The employee pictures are good now! But, the ones on studypage didn't change! Also the page hero is kinda basic and clumped. Can you add some kind of placeholder logo? 
 
 Mikko and jari are still very similar in the face. Maybe make Jari younger and different nationality? Also the logo is tiny on the page. And Sari and Anna have different looks for sure, but identical stance. (Standing with arms held together on front on their hip.) Also why is there duplicate pngs now? Add a imaginary dropdown options to the navbar (not functional) and a small downward arrow to the buttons indicating dropdown
+
+The services should also have some kind of graphic. It does not need to realistic. It can be illustrative
+
+Add pricing. Classic massage is cheapest starting at 47€ and there is also members price which is 25% off any service. Add under the our experts a section encouraging a purchase, and contact. Add info about payment options: Pricing, Membership, Payment options (ePassi, HealthInsurance)
+
+I wanted you to add the pricing into the existing service display items. Also membership should be at the bottom, and the payment options should be in more visible form
+
+Better. But the sections have a little too much empty space in between. And the contact section should still be last. I was wondering if maybe you could add a fake calendar to the contact section? With maybe some free times visible? Make it fit to the right side of the opening times
+
+Add more available times and add the current date to "Today". Actually move the calendar to after "our experts" And make it fit alongside the membership item, to the left side
+
+No new times visible. Also the other days should also have dates. Make the calendar take more space so the membership does not dominate
+
+Ok now you broke it. The available times should have their buttons as before. Also today should have less options.
+
+Definently better. But the buttons of calendar and membership are misaligned and look off. Also the navbar buttons should be made functional in the single page application way, so that they scroll to the correct section. Also the buttons in the hero should scroll to the correct section.

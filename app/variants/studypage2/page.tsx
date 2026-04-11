@@ -12,25 +12,36 @@ const pageContent = {
 		heroSubtitle:
 			"Olemme Tampereella sijaitseva hyvinvoinnin asiantuntijakeskus. Yhdistämme vankan terveydenhuollon osaamisen ja yksilöllisen kohtaamisen asiakkaan parhaaksi.",
 		cta: "Varaa aika vastaanotolle",
+		payment: "Maksuvaihtoehdot",
 		servicesTitle: "Palvelumme",
 		servicesSubtitle: "Tarjoamme näyttöön perustuvaa hoitoa",
 		services: [
 			{
 				title: "Klassinen hieronta",
 				desc: "Perinteinen menetelmä lihaskireyksien poistoon ja verenkierron vilkastuttamiseen. Lievittää kiputiloja ja rentouttaa mieltä.",
+				image: "/service1.png",
+				price: "Alk. 47€",
 			},
 			{
 				title: "Urheiluhieronta",
 				desc: "Tehokkaampi hoitomuoto aktiiviliikkujille ja urheilijoille. Keskittyy lihashuoltoon, palautumiseen ja vammojen ennaltaehkäisyyn.",
+				image: "/service2.png",
+				price: "Alk. 55€",
 			},
 			{
 				title: "Naprapatia",
 				desc: "Tuki- ja liikuntaelimistön häiriöiden asiantuntijahoito, johon sisältyy nivelten manipulaatiota ja mobilisaatiota sekä terapeuttista harjoittelua.",
+				image: "/service3.png",
+				price: "Alk. 65€",
 			},
 		],
 		teamTitle: "Asiantuntijamme",
 		teamDescription:
 			"Henkilökuntamme koostuu Valviran hyväksymistä terveydenhuollon ammattilaisista. Tavoitteenamme on löytää juuri sinulle sopivin hoitomuoto.",
+		ctaSectionTitle: "Liity jäseneksi ja säästä 25%",
+		ctaSectionDesc: "Säännöllinen lihashuolto kannattaa. Jäsenenä saat kaikista normaalihintaisista palveluista -25% alennuksen, ilmaisen peruutusturvan ja henkilökohtaisen hoitosuunnitelman.",
+		ctaPaymentOptionsTitle: "Meillä käy myös:",
+		ctaPaymentOptions: ["ePassi", "Smartum", "Edenred", "Terveydenhuoltovakuutukset"],
 		contactTitle: "Yhteystiedot",
 		openHoursTitle: "Aukioloajat",
 		openHours: [
@@ -38,6 +49,8 @@ const pageContent = {
 			"Lauantaisin: 10:00 - 15:00",
 			"Sunnuntaisin: Suljettu",
 		],
+		freeTimesTitle: "Vapaat ajat",
+		freeTimes: ["Tänään|14:00, 16:30", "Huomenna|09:00, 10:15, 11:30, 14:00, 16:15", "Ylihuomenna|08:30, 10:00, 13:00, 15:00"],
 		footerCopy: "Kaikki oikeudet pidätetään.",
 	},
 	en: {
@@ -46,25 +59,36 @@ const pageContent = {
 		heroSubtitle:
 			"We are a leading wellness center in Tampere. We combine solid healthcare expertise with personalized service for the benefit of our clients.",
 		cta: "Book an Appointment",
+		payment: "Payment Options",
 		servicesTitle: "Our Services",
 		servicesSubtitle: "We provide evidence-based care",
 		services: [
 			{
 				title: "Classic Massage",
 				desc: "A traditional method for eliminating muscle tension and stimulating blood circulation. Relieves pain and relaxes the mind.",
+				image: "/service1.png",
+				price: "From 47€",
 			},
 			{
 				title: "Sports Massage",
 				desc: "A powerful treatment for active people and athletes. Focuses on muscle maintenance, recovery, and injury prevention.",
+				image: "/service2.png",
+				price: "From 55€",
 			},
 			{
 				title: "Naprapathy",
 				desc: "Expert treatment for musculoskeletal disorders that includes joint manipulation, mobilization, and therapeutic exercises.",
+				image: "/service3.png",
+				price: "From 65€",
 			},
 		],
 		teamTitle: "Our Experts",
 		teamDescription:
 			"Our staff consists of certified healthcare professionals. Our goal is to find the most suitable treatment method specifically for you.",
+		ctaSectionTitle: "Become a member & save 25%",
+		ctaSectionDesc: "Regular muscle care pays off. As a member you get a 25% discount on all normal priced services, along with free cancellation protection and a personal treatment plan.",
+		ctaPaymentOptionsTitle: "We also accept:",
+		ctaPaymentOptions: ["ePassi", "Smartum", "Edenred", "Health Insurance"],
 		contactTitle: "Contact Information",
 		openHoursTitle: "Opening Hours",
 		openHours: [
@@ -72,6 +96,8 @@ const pageContent = {
 			"Saturdays: 10:00 - 15:00",
 			"Sundays: Closed",
 		],
+		freeTimesTitle: "Available times",
+		freeTimes: ["Today|14:00, 16:30", "Tomorrow|09:00, 10:15, 11:30, 14:00, 16:15", "Day after tomorrow|08:30, 10:00, 13:00, 15:00"],
 		footerCopy: "All rights reserved.",
 	},
 };
@@ -132,7 +158,7 @@ function FadeIn({
 // Relaxing/Spa-themed SVG Icons
 const ChevronDownIcon = () => (
 	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-	  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+		<path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
 	</svg>
 );
 
@@ -249,6 +275,16 @@ export default function StudyPage2() {
 	const business = siteData[locale];
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+	const scrollToSection = (id: string) => {
+		const element = document.getElementById(id);
+		if (element) {
+			const yOffset = -80;
+			const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+			window.scrollTo({ top: y, behavior: 'smooth' });
+			setIsMenuOpen(false);
+		}
+	};
+
 	return (
 		<div className="min-h-screen bg-[#FDFBF7] font-sans text-[#3A3532]">
 			{/* Navigation */}
@@ -265,16 +301,22 @@ export default function StudyPage2() {
 
 					{/* Desktop Nav */}
 					<nav className="hidden md:flex items-center gap-8">
-						{t.nav.map((item) => (
-							<button
-								key={item}
-								className="flex items-center gap-1.5 text-sm font-medium text-[#5C554F] hover:text-[#2B403B] transition-colors"
-							>
-								{item}
-								<ChevronDownIcon />
-							</button>
-						))}
-						<button className="bg-[#2B403B] text-[#FDFBF7] px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[#1A2E2A] transition-all shadow-md shadow-[#2B403B]/20">
+						{t.nav.map((item: string, idx: number) => {
+							const sectionIds = ["services", "team", "membership", "contact"];
+							return (
+								<button
+									key={item}
+									className="flex items-center gap-1.5 text-sm font-semibold text-[#5C554F] hover:text-[#2B403B] transition-colors cursor-pointer"
+									onClick={() => scrollToSection(sectionIds[idx])}
+								>
+									{item}
+								</button>
+							);
+						})}
+						<button
+							className="bg-[#2B403B] text-[#FDFBF7] px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[#1A2E2A] transition-all shadow-md shadow-[#2B403B]/20 cursor-pointer"
+							onClick={() => scrollToSection('contact')}
+						>
 							{t.cta}
 						</button>
 					</nav>
@@ -291,16 +333,22 @@ export default function StudyPage2() {
 				{/* Mobile Nav */}
 				{isMenuOpen && (
 					<div className="md:hidden bg-[#FDFBF7] border-t border-[#EBE6DF] px-6 py-4 flex flex-col gap-4 shadow-lg absolute w-full">
-						{t.nav.map((item) => (
-							<button
-								key={item}
-								className="flex items-center justify-between text-base font-medium text-[#5C554F] w-full text-left"
-							>
-								{item}
-								<ChevronDownIcon />
-							</button>
-						))}
-						<button className="bg-[#2B403B] w-full text-[#FDFBF7] px-5 py-3 rounded-full text-sm font-medium mt-2 shadow-md">
+						{t.nav.map((item: string, idx: number) => {
+							const sectionIds = ["services", "team", "membership", "contact"];
+							return (
+								<button
+									key={item}
+									className="flex items-center justify-between text-base font-medium text-[#5C554F] w-full text-left cursor-pointer"
+									onClick={() => scrollToSection(sectionIds[idx])}
+								>
+									{item}
+								</button>
+							);
+						})}
+						<button
+							className="bg-[#2B403B] w-full text-[#FDFBF7] px-5 py-3 rounded-full text-sm font-medium mt-2 shadow-md cursor-pointer"
+							onClick={() => scrollToSection('contact')}
+						>
 							{t.cta}
 						</button>
 					</div>
@@ -323,10 +371,16 @@ export default function StudyPage2() {
 								{t.heroSubtitle}
 							</p>
 							<div className="mt-10 flex flex-col sm:flex-row gap-4">
-								<button className="bg-[#2B403B] text-white px-8 py-4 rounded-full font-medium text-base hover:bg-[#1A2E2A] shadow-lg shadow-[#2B403B]/30 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#2B403B]">
+								<button
+									className="bg-[#2B403B] text-white px-8 py-4 rounded-full font-medium text-base hover:bg-[#1A2E2A] shadow-lg shadow-[#2B403B]/30 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#2B403B] cursor-pointer"
+									onClick={() => scrollToSection('membership')}
+								>
 									{t.cta}
 								</button>
-								<button className="bg-transparent text-[#2B403B] px-8 py-4 rounded-full font-medium text-base hover:bg-[#EBE6DF] transition-colors border-2 border-[#2B403B]">
+								<button
+									className="bg-transparent text-[#2B403B] px-8 py-4 rounded-full font-medium text-base hover:bg-[#EBE6DF] transition-colors border-2 border-[#2B403B] cursor-pointer"
+									onClick={() => scrollToSection('services')}
+								>
 									{t.nav[0]}
 								</button>
 							</div>
@@ -348,7 +402,7 @@ export default function StudyPage2() {
 				</section>
 
 				{/* Services Section */}
-				<section className="py-24 bg-[#FDFBF7]">
+				<section id="services" className="py-16 bg-[#FDFBF7]">
 					<div className="max-w-6xl mx-auto px-6">
 						<FadeIn direction="up">
 							<div className="text-center max-w-2xl mx-auto mb-16">
@@ -364,13 +418,22 @@ export default function StudyPage2() {
 						<div className="grid md:grid-cols-3 gap-8">
 							{t.services.map((service, index) => (
 								<FadeIn key={service.title} delay={index * 150} direction="up">
-									<div className="bg-white p-10 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#F0ECE4] h-full hover:shadow-[0_8px_30px_rgb(43,64,59,0.08)] transition-all">
-										<div className="w-14 h-14 bg-[#E1E5E0] text-[#2B403B] flex items-center justify-center rounded-2xl mb-8">
-											<LeafIcon />
+									<div className="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#F0ECE4] h-full hover:shadow-[0_8px_30px_rgb(43,64,59,0.08)] transition-all flex flex-col text-center">
+										<div className="relative w-full aspect-video mb-6 rounded-xl overflow-hidden bg-[#F5F2EB]">
+											<Image
+												src={service.image}
+												alt={service.title}
+												fill
+												sizes="(max-width: 768px) 100vw, 33vw"
+												style={{ objectFit: "cover" }}
+											/>
 										</div>
-										<h3 className="text-xl font-bold text-[#3A3532] mb-4">
+										<h3 className="text-xl font-bold text-[#3A3532] mb-3">
 											{service.title}
 										</h3>
+										<div className="inline-block px-4 py-1.5 bg-[#E1E5E0] text-[#2B403B] font-extrabold rounded-lg mb-4 text-base self-center shadow-sm">
+											{service.price}
+										</div>
 										<p className="text-[#6D655E] leading-relaxed">
 											{service.desc}
 										</p>
@@ -381,8 +444,10 @@ export default function StudyPage2() {
 					</div>
 				</section>
 
+
+
 				{/* Team Section */}
-				<section className="py-24 bg-[#F5F2EB]">
+				<section id="team" className="py-16 bg-[#F5F2EB]">
 					<div className="max-w-6xl mx-auto px-6">
 						<FadeIn direction="up">
 							<div className="max-w-2xl lg:w-1/2 mb-16">
@@ -427,8 +492,82 @@ export default function StudyPage2() {
 					</div>
 				</section>
 
+
+
+				{/* Membership / Calendar Section */}
+				<section id="membership" className="py-16 bg-[#E1E5E0]/40 border-b border-[#EBE6DF]">
+					<div className="max-w-6xl mx-auto px-6">
+						<FadeIn direction="up">
+							<div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16 items-stretch">
+								{/* Left: Fake Calendar */}
+								<div className="bg-[#E6D5C3] p-10 lg:p-12 rounded-[3rem] border border-[#D5C2AD] shadow-2xl flex flex-col h-full">
+									<h3 className="text-2xl lg:text-3xl font-bold mb-8 text-[#1A2E2A]">
+										{t.freeTimesTitle}
+									</h3>
+									<ul className="space-y-4 mb-8 flex-grow">
+										{t.freeTimes.map((timeStr: string, idx: number) => {
+											const [day, times] = timeStr.split("|");
+
+											const targetDate = new Date();
+											targetDate.setDate(targetDate.getDate() + idx);
+											const dateString = targetDate.toLocaleDateString(locale === 'en' ? 'en-US' : 'fi-FI', { month: 'numeric', day: 'numeric' });
+
+											const displayDay = `${day} (${dateString})`;
+
+											return (
+												<li key={idx} className="flex flex-col border-b border-[#D5C2AD]/50 pb-5 last:border-0 last:pb-0">
+													<span className="text-[15px] text-[#4A5D4E] font-bold mb-3">{displayDay}</span>
+													<div className="flex flex-wrap gap-2.5">
+														{times?.split(",").map((t: string) => (
+															<span key={t} className="bg-white text-[#2B403B] px-4 py-2 rounded-xl text-sm font-bold shadow-sm cursor-pointer hover:bg-[#1A2E2A] hover:text-white transition-colors border border-transparent hover:border-[#1A2E2A]">{t.trim()}</span>
+														))}
+													</div>
+												</li>
+											)
+										})}
+									</ul>
+									<button className="w-full mt-auto bg-[#1A2E2A] text-white px-6 h-16 rounded-full font-bold tracking-wide text-lg hover:bg-[#2B403B] transition-colors shadow-xl flex justify-center items-center" onClick={() => scrollToSection('contact')}>
+										{t.cta}
+									</button>
+								</div>
+
+								{/* Right: Membership CTA */}
+								<div className="bg-[#2B403B] rounded-[3rem] p-10 lg:p-12 text-center shadow-2xl relative overflow-hidden flex flex-col h-full">
+									<div className="relative z-10 flex flex-col items-center justify-center flex-grow">
+										<h2 className="text-3xl sm:text-4xl lg:text-[42px] leading-tight font-extrabold text-[#FDFBF7] tracking-tight mb-8">
+											{t.ctaSectionTitle}
+										</h2>
+										<p className="text-lg text-[#A2B0A8] leading-relaxed mb-10 max-w-lg mx-auto font-medium">
+											{t.ctaSectionDesc}
+										</p>
+									</div>
+									<button className="w-full mt-auto bg-[#E6D5C3] text-[#1A2E2A] px-6 h-16 rounded-full font-bold text-lg hover:bg-white transition-all flex justify-center items-center gap-3 relative z-10 shadow-xl shadow-black/20" onClick={() => scrollToSection('contact')}>
+										{t.payment}
+										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+											<path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+										</svg>
+									</button>
+								</div>
+							</div>
+
+							<div className="text-center pt-8 border-t border-[#D5C2AD]/40">
+								<h3 className="text-xl lg:text-2xl font-extrabold text-[#2B403B] mb-8 tracking-tight">
+									{t.ctaPaymentOptionsTitle}
+								</h3>
+								<div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8">
+									{t.ctaPaymentOptions.map((opt: string) => (
+										<div key={opt} className="px-6 py-4 bg-[#FDFBF7] text-[#2B403B] font-bold rounded-2xl text-base lg:text-lg shadow-sm border border-[#EBE6DF] hover:scale-105 transition-transform cursor-pointer shadow-[0_4px_15px_rgb(0,0,0,0.04)]">
+											{opt}
+										</div>
+									))}
+								</div>
+							</div>
+						</FadeIn>
+					</div>
+				</section>
+
 				{/* Contact Section */}
-				<section className="py-24 bg-[#2B403B] text-[#FDFBF7]">
+				<section id="contact" className="py-16 bg-[#2B403B] text-[#FDFBF7]">
 					<div className="max-w-6xl mx-auto px-6">
 						<div className="grid md:grid-cols-2 gap-16">
 							<FadeIn direction="left">
@@ -460,18 +599,18 @@ export default function StudyPage2() {
 								</div>
 							</FadeIn>
 
-							<FadeIn direction="right" delay={200}>
-								<div className="bg-[#1A2E2A] p-10 rounded-3xl border border-[#4A5D4E]/30 shadow-2xl">
+							<FadeIn direction="up" delay={150}>
+								<div className="bg-[#1A2E2A] p-10 rounded-3xl border border-[#4A5D4E]/30 shadow-2xl h-full flex flex-col">
 									<h3 className="text-2xl font-semibold mb-8 text-white">
 										{t.openHoursTitle}
 									</h3>
-									<ul className="space-y-5">
-										{t.openHours.map((hour, index) => {
+									<ul className="space-y-6 flex-grow">
+										{t.openHours.map((hour: string, index: number) => {
 											const [day, time] = hour.split(":");
 											return (
 												<li
 													key={index}
-													className="flex justify-between items-center text-base border-b border-[#4A5D4E]/40 pb-5 last:border-0 last:pb-0"
+													className="flex justify-between items-center text-lg border-b border-[#4A5D4E]/40 pb-6 last:border-0 last:pb-0"
 												>
 													<span className="text-[#A2B0A8] font-medium">
 														{day}
@@ -483,9 +622,6 @@ export default function StudyPage2() {
 											);
 										})}
 									</ul>
-									<button className="w-full mt-10 bg-[#E6D5C3] text-[#1A2E2A] px-6 py-4 rounded-xl font-bold tracking-wide hover:bg-white transition-colors shadow-lg">
-										{t.cta}
-									</button>
 								</div>
 							</FadeIn>
 						</div>
