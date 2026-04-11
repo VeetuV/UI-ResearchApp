@@ -34,6 +34,13 @@ export const siteData = {
 				image: "/employee4-new.png",
 				bio: "Leo on erikoistunut aktiiviliikkujien ja urheilijoiden lihashuoltoon sekä palautumisen nopeuttamiseen laaja-alaisen ymmärryksensä avulla.",
 			},
+			{
+				id: "e5",
+				name: "Jorma Järvinen",
+				role: "Erikoishieroja & Osteopaatti",
+				image: "/employee5-new.png",
+				bio: "Yli 25 vuoden kokemuksella Jorma on erikoistunut syviin kroonisiin kiputiloihin ja osteopaattiseen lihashuoltoon pitkäaikaisilla tuloksilla.",
+			},
 		],
 	},
 	en: {
@@ -70,6 +77,13 @@ export const siteData = {
 				role: "Sports Massage Therapist",
 				image: "/employee4-new.png",
 				bio: "Leo specializes in muscle care for active individuals, helping them recover faster with his comprehensive understanding of the body.",
+			},
+			{
+				id: "e5",
+				name: "Jorma Järvinen",
+				role: "Specialist Massage Therapist & Osteopath",
+				image: "/employee5-new.png",
+				bio: "With over 25 years of experience, Jorma specializes in deep chronic pain and osteopathic muscle care with long-term results.",
 			},
 		],
 	},

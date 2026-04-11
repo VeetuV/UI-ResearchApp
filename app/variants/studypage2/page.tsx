@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useLocale } from "@/lib/LocaleContext";
 import Image from "next/image";
@@ -155,6 +155,135 @@ function FadeIn({
 	);
 }
 
+const ExpertsCarousel = ({
+	experts,
+	title,
+	description,
+}: {
+	experts: typeof siteData.fi.employees;
+	title: string;
+	description: string;
+}) => {
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const length = experts.length;
+
+	const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % length);
+	const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + length) % length);
+
+	return (
+		<div className="w-full relative pt-4 overflow-hidden">
+			<FadeIn direction="up">
+				<div className="flex flex-col mb-16 gap-6 px-6 max-w-6xl mx-auto">
+					<div className="max-w-2xl">
+						<h2 className="text-3xl sm:text-4xl font-bold text-[#2B403B] tracking-tight">
+							{title}
+						</h2>
+						<p className="mt-5 text-lg text-[#6D655E] leading-relaxed">
+							{description}
+						</p>
+					</div>
+				</div>
+			</FadeIn>
+
+			<FadeIn direction="up" delay={150}>
+				<div className="relative h-[620px] w-full grid place-items-center">
+					{/* Left Arrow */}
+					<button
+						onClick={prevSlide}
+						className="absolute left-4 lg:left-8 z-40 w-14 h-14 rounded-full bg-white/80 backdrop-blur-sm border-2 border-[#2B403B]/20 text-[#2B403B] flex items-center justify-center hover:bg-[#2B403B] hover:border-[#2B403B] hover:text-white transition-all cursor-pointer shadow-lg"
+					>
+						<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+							<path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+						</svg>
+					</button>
+					{/* Right Arrow */}
+					<button
+						onClick={nextSlide}
+						className="absolute right-4 lg:right-8 z-40 w-14 h-14 rounded-full bg-white/80 backdrop-blur-sm border-2 border-[#2B403B]/20 text-[#2B403B] flex items-center justify-center hover:bg-[#2B403B] hover:border-[#2B403B] hover:text-white transition-all cursor-pointer shadow-lg"
+					>
+						<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+							<path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+						</svg>
+					</button>
+					{experts.map((employee, index) => {
+						const dx = (index - currentIndex + length) % length;
+						const offset = dx > 2 ? dx - length : dx;
+
+						let xOffset = 0;
+						let scale = 1;
+						let opacity = 1;
+						let zIndex = 10;
+
+						if (offset === 0) {
+							xOffset = 0;
+							scale = 1;
+							opacity = 1;
+							zIndex = 30;
+						} else if (offset === -1) {
+							xOffset = -105;
+							scale = 0.95;
+							opacity = 1;
+							zIndex = 20;
+						} else if (offset === 1) {
+							xOffset = 105;
+							scale = 0.95;
+							opacity = 1;
+							zIndex = 20;
+						} else if (offset === -2) {
+							xOffset = -210;
+							scale = 0.85;
+							opacity = 0.3;
+							zIndex = 10;
+						} else if (offset === 2) {
+							xOffset = 210;
+							scale = 0.85;
+							opacity = 0.3;
+							zIndex = 10;
+						}
+
+						return (
+							<div
+								key={employee.id}
+								className="col-start-1 row-start-1 w-[75%] sm:w-[50%] md:w-[35%] lg:w-[30%] max-w-[340px] absolute transition-all duration-[700ms] ease-[cubic-bezier(0.25,1,0.5,1)]"
+								style={{
+									transform: `translateX(${xOffset}%) scale(${scale})`,
+									opacity: opacity,
+									zIndex: zIndex,
+									pointerEvents: opacity === 1 ? "auto" : "none",
+								}}
+							>
+								<div className="bg-white p-5 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-[#F0ECE4] h-full flex flex-col">
+									<div className="relative aspect-[4/5] mb-6 overflow-hidden rounded-2xl bg-[#EBE6DF]">
+										<Image
+											src={employee.image}
+											alt={employee.name}
+											fill
+											sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+											style={{ objectFit: "cover" }}
+											priority={opacity === 1}
+										/>
+									</div>
+									<div className="px-2 pb-2 text-center flex-grow flex flex-col">
+										<h3 className="text-xl font-bold text-[#3A3532]">
+											{employee.name}
+										</h3>
+										<p className="text-sm font-semibold text-[#827D78] mt-1.5 mb-4 px-2">
+											{employee.role}
+										</p>
+										<p className="text-sm text-[#6D655E] leading-relaxed line-clamp-3">
+											{employee.bio}
+										</p>
+									</div>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</FadeIn>
+		</div>
+	);
+};
+
 // Relaxing/Spa-themed SVG Icons
 const ChevronDownIcon = () => (
 	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
@@ -286,9 +415,9 @@ export default function StudyPage2() {
 	};
 
 	return (
-		<div className="min-h-screen bg-[#FDFBF7] font-sans text-[#3A3532]">
+		<div className="min-h-screen bg-[#DDE4DB] font-sans text-[#3A3532]">
 			{/* Navigation */}
-			<header className="fixed w-full top-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#EBE6DF]">
+			<header className="fixed w-full top-0 z-50 bg-[#DDE4DB]/90 backdrop-blur-md border-b border-[#C8D2C6]">
 				<div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
 					<div className="flex items-center gap-3">
 						<div className="relative w-12 h-12 rounded-full overflow-hidden bg-white/50 border border-[#EBE6DF]">
@@ -402,7 +531,7 @@ export default function StudyPage2() {
 				</section>
 
 				{/* Services Section */}
-				<section id="services" className="py-16 bg-[#FDFBF7]">
+				<section id="services" className="py-16 bg-[#DDE4DB]">
 					<div className="max-w-6xl mx-auto px-6">
 						<FadeIn direction="up">
 							<div className="text-center max-w-2xl mx-auto mb-16">
@@ -448,48 +577,11 @@ export default function StudyPage2() {
 
 				{/* Team Section */}
 				<section id="team" className="py-16 bg-[#F5F2EB]">
-					<div className="max-w-6xl mx-auto px-6">
-						<FadeIn direction="up">
-							<div className="max-w-2xl lg:w-1/2 mb-16">
-								<h2 className="text-3xl sm:text-4xl font-bold text-[#2B403B] tracking-tight">
-									{t.teamTitle}
-								</h2>
-								<p className="mt-5 text-lg text-[#6D655E] leading-relaxed">
-									{t.teamDescription}
-								</p>
-							</div>
-						</FadeIn>
-
-						<div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-							{business.employees.map((employee, index) => (
-								<FadeIn key={employee.id} delay={index * 120} direction="up">
-									<div className="group bg-white p-4 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300">
-										<div className="relative aspect-[4/5] mb-6 overflow-hidden rounded-2xl bg-[#EBE6DF]">
-											<Image
-												src={employee.image}
-												alt={employee.name}
-												fill
-												sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-												style={{ objectFit: "cover" }}
-												className="group-hover:scale-105 transition-transform duration-700"
-											/>
-										</div>
-										<div className="px-2 pb-2 text-center">
-											<h3 className="text-lg font-bold text-[#3A3532]">
-												{employee.name}
-											</h3>
-											<p className="text-sm font-medium text-[#827D78] mt-1 mb-4">
-												{employee.role}
-											</p>
-											<p className="text-sm text-[#6D655E] leading-relaxed">
-												{employee.bio}
-											</p>
-										</div>
-									</div>
-								</FadeIn>
-							))}
-						</div>
-					</div>
+                    <ExpertsCarousel 
+                        experts={business.employees} 
+                        title={t.teamTitle} 
+                        description={t.teamDescription} 
+                    />
 				</section>
 
 

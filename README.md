@@ -9,7 +9,7 @@ The goal is to measure user trust across multiple interface variants while keepi
 - Next.js (App Router)
 - TypeScript
 - Tailwind CSS
-- Planned next step: Supabase integration for storing survey responses
+- Hosted on vercel
 
 ## Current Study Flow
 
@@ -47,6 +47,7 @@ To reduce bias in study outcomes:
 - `components/SurveyModal.tsx`: Survey modal UI + Back/Next behavior
 - `lib/i18n.ts`: Locale messages and defaults
 - `lib/LocaleContext.tsx`: Locale state and message access
+- `lib/shared-data.ts`: Website info that is shared on multiple variants, for easier editing.
 
 ## Getting Started
 

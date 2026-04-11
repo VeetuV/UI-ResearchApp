@@ -27,3 +27,9 @@ No new times visible. Also the other days should also have dates. Make the calen
 Ok now you broke it. The available times should have their buttons as before. Also today should have less options.
 
 Definently better. But the buttons of calendar and membership are misaligned and look off. Also the navbar buttons should be made functional in the single page application way, so that they scroll to the correct section. Also the buttons in the hero should scroll to the correct section.
+
+Idea. Make the experts section a rotating scroll section. Make it so three employees are visible properly and two are faded in the edges, and have a arrow on both sides for scroll. Add one more employee so it scrolls more naturally. Make this employee older, with gray or bald hair
+
+It looks really cool! But the arrow should be on the same level, after the first and last fully opaque card. Also, lets try something. Change the website background from white to something neutral but slightly more colorful
+
+The carousel is great but it does not fade in like the other elements. Also add a bit more colour to the background
