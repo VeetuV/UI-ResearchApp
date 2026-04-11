@@ -1,0 +1,76 @@
+export const siteData = {
+	fi: {
+		siteName: "Tampereen Hyvinvointikeskus",
+		brand: "Hyvinvointikeskus",
+		address: "Hämeenkatu 12 A, 33100 Tampere",
+		phone: "040 123 4567",
+		email: "info@hyvinvointikeskustampere.fi",
+		employees: [
+			{
+				id: "e1",
+				name: "Sari Virtanen",
+				role: "Koulutettu hieroja",
+				image: "/employee1-new.png",
+				bio: "Sarilla on 10 vuoden kokemus klassisesta hieronnasta ja urheiluhieronnasta. Hän on erikoistunut niska-hartiaseudun kiputiloihin.",
+			},
+			{
+				id: "e2",
+				name: "Mikael Lahti",
+				role: "Naprapaatti",
+				image: "/employee2-new.png",
+				bio: "Mikael auttaa kehon virheasentojen korjaamisessa sekä kroonisten selkäkipujen lievittämisessä tarkkojen hoitomenetelmien avulla.",
+			},
+			{
+				id: "e3",
+				name: "Anna Korhonen",
+				role: "Koulutettu hieroja",
+				image: "/employee3-new.png",
+				bio: "Anna yhdistää hoitoihinsa lempeitä mutta tehokkaita tekniikoita, jotka sopivat erinomaisesti stressin purkuun ja syvään rentoutumiseen.",
+			},
+			{
+				id: "e4",
+				name: "Leo Adam",
+				role: "Urheiluhieroja",
+				image: "/employee4-new.png",
+				bio: "Leo on erikoistunut aktiiviliikkujien ja urheilijoiden lihashuoltoon sekä palautumisen nopeuttamiseen laaja-alaisen ymmärryksensä avulla.",
+			},
+		],
+	},
+	en: {
+		siteName: "Tampere Wellness Center",
+		brand: "Wellness Center",
+		address: "Hämeenkatu 12 A, 33100 Tampere",
+		phone: "+358 40 123 4567",
+		email: "info@hyvinvointikeskustampere.fi",
+		employees: [
+			{
+				id: "e1",
+				name: "Sari Virtanen",
+				role: "Certified Massage Therapist",
+				image: "/employee1-new.png",
+				bio: "Sari has 10 years of experience in classic and sports massage. She specializes in relieving tension in the neck and shoulder area.",
+			},
+			{
+				id: "e2",
+				name: "Mikael Lahti",
+				role: "Naprapath",
+				image: "/employee2-new.png",
+				bio: "Mikael helps correct body posture issues and alleviate chronic back pain using precise treatment methods.",
+			},
+			{
+				id: "e3",
+				name: "Anna Korhonen",
+				role: "Certified Massage Therapist",
+				image: "/employee3-new.png",
+				bio: "Anna incorporates gentle yet effective techniques into her treatments, perfect for stress relief and deep relaxation.",
+			},
+			{
+				id: "e4",
+				name: "Leo Adam",
+				role: "Sports Massage Therapist",
+				image: "/employee4-new.png",
+				bio: "Leo specializes in muscle care for active individuals, helping them recover faster with his comprehensive understanding of the body.",
+			},
+		],
+	},
+} as const;
