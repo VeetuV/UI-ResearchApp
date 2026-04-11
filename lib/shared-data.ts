@@ -1,6 +1,6 @@
 export const siteData = {
 	fi: {
-		siteName: "Tampereen Hyvinvointikeskus",
+		siteName: "Hyvinvointikeskus",
 		brand: "Hyvinvointikeskus",
 		address: "Hämeenkatu 12 A, 33100 Tampere",
 		phone: "040 123 4567",
@@ -22,10 +22,10 @@ export const siteData = {
 			},
 			{
 				id: "e3",
-				name: "Anna Korhonen",
+				name: "Aino Korhonen",
 				role: "Koulutettu hieroja",
 				image: "/employee3-new.png",
-				bio: "Anna yhdistää hoitoihinsa lempeitä mutta tehokkaita tekniikoita, jotka sopivat erinomaisesti stressin purkuun ja syvään rentoutumiseen.",
+				bio: "Aino yhdistää hoitoihinsa lempeitä mutta tehokkaita tekniikoita, jotka sopivat erinomaisesti stressin purkuun ja syvään rentoutumiseen.",
 			},
 			{
 				id: "e4",
@@ -37,7 +37,7 @@ export const siteData = {
 		],
 	},
 	en: {
-		siteName: "Tampere Wellness Center",
+		siteName: "Wellness Center",
 		brand: "Wellness Center",
 		address: "Hämeenkatu 12 A, 33100 Tampere",
 		phone: "+358 40 123 4567",
@@ -59,10 +59,10 @@ export const siteData = {
 			},
 			{
 				id: "e3",
-				name: "Anna Korhonen",
+				name: "Aino Korhonen",
 				role: "Certified Massage Therapist",
 				image: "/employee3-new.png",
-				bio: "Anna incorporates gentle yet effective techniques into her treatments, perfect for stress relief and deep relaxation.",
+				bio: "Aino incorporates gentle yet effective techniques into her treatments, perfect for stress relief and deep relaxation.",
 			},
 			{
 				id: "e4",

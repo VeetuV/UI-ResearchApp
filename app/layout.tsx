@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "UX Trust Study",
-  description: "University UX research study app",
+  title: "Website interface study",
+  description: "Website interface study",
 };
 
 export default function RootLayout({

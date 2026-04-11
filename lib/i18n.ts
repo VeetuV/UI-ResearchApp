@@ -85,7 +85,7 @@ const messages: Record<Locale, Messages> = {
   },
   en: {
     intro: {
-      badge: "University UX Research Study",
+      badge: "Website interface study",
       title: "Study Instructions",
       body: "You will review a sequence of web interfaces. Observe each page naturally and provide your responses in the survey.",
       begin: "Begin Study",
