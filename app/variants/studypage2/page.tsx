@@ -160,7 +160,7 @@ const ExpertsCarousel = ({
 	title,
 	description,
 }: {
-	experts: typeof siteData.fi.employees;
+	experts: readonly { id: string; name: string; role: string; image: string; bio: string }[];
 	title: string;
 	description: string;
 }) => {

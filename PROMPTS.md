@@ -33,3 +33,24 @@ Idea. Make the experts section a rotating scroll section. Make it so three emplo
 It looks really cool! But the arrow should be on the same level, after the first and last fully opaque card. Also, lets try something. Change the website background from white to something neutral but slightly more colorful
 
 The carousel is great but it does not fade in like the other elements. Also add a bit more colour to the background
+
+There is an error.  it Happened after trying to fix object fade in
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+  380 | );
+  381 |
+> 382 | const EnvelopeIcon = () => (
+      |                       ^
+  383 | 	<svg
+  384 | 		xmlns="http://www.w3.org/2000/svg"
+  385 | 		fill="none"
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./app/variants/studypage2/page.tsx [Client Component Browser]
+    ./app/variants/studypage2/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/variants/studypage2/page.tsx [Client Component SSR]
+    ./app/variants/studypage2/page.tsx [Server Component]
