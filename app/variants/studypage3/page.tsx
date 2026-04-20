@@ -4,7 +4,7 @@ import { useLocale } from "@/lib/LocaleContext";
 import { siteData } from "@/lib/shared-data";
 import Image from "next/image";
 import { Mada, Marcellus_SC } from "next/font/google";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const titleFont = Marcellus_SC({
 	weight: "400",
@@ -74,6 +74,8 @@ const pageContent = {
 		socialsTitle: "Löydät meidät myös:",
 		mapLabel: "Kartta",
 		mapAlt: "Karttanäkymä toimipisteen alueesta",
+		welcomePopupAlt: "Tarjousponnahdusikkuna",
+		newsletterPopupAlt: "Uutiskirjeponnahdusikkuna",
 		facebook: "Hyvinvointikeskus Bloom",
 		instagram: "@bloomwellness",
 	},
@@ -134,15 +136,52 @@ const pageContent = {
 		socialsTitle: "You can also find us on:",
 		mapLabel: "Map preview",
 		mapAlt: "Map view near the clinic",
+		welcomePopupAlt: "Offer popup",
+		newsletterPopupAlt: "Newsletter popup",
 		facebook: "Wellness Center Bloom",
 		instagram: "@bloomwellness",
 	},
 } as const;
 
+function PopupImageModal({
+	isOpen,
+	onClose,
+	src,
+	alt,
+	imageWidth,
+	imageHeight,
+}: {
+	isOpen: boolean;
+	onClose: () => void;
+	src: string;
+	alt: string;
+	imageWidth: number;
+	imageHeight: number;
+}) {
+	if (!isOpen) return null;
+
+	return (
+		<div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/35 p-4" onClick={onClose}>
+			<div className="relative w-full max-w-[456px] overflow-hidden shadow-2xl" onClick={(event) => event.stopPropagation()}>
+				<Image src={src} alt={alt} width={imageWidth} height={imageHeight} className="h-auto w-full" priority />
+				<button
+					type="button"
+					onClick={onClose}
+					aria-label="Close popup"
+					className="absolute right-1 top-1 h-10 w-10 cursor-pointer rounded-sm bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4d3972]"
+				/>
+			</div>
+		</div>
+	);
+}
+
 export default function StudyPage3() {
 	const { locale } = useLocale();
 	const content = pageContent[locale];
 	const info = siteData[locale];
+	const [isWelcomePopupOpen, setIsWelcomePopupOpen] = useState(true);
+	const [isBottomPopupOpen, setIsBottomPopupOpen] = useState(false);
+	const [hasShownBottomPopup, setHasShownBottomPopup] = useState(false);
 
 	useEffect(() => {
 		const previousBodyBackground = document.body.style.backgroundColor;
@@ -157,8 +196,52 @@ export default function StudyPage3() {
 		};
 	}, []);
 
+	useEffect(() => {
+		if (hasShownBottomPopup) return;
+
+		const checkIfAtBottom = () => {
+			const scrolledTo = window.scrollY + window.innerHeight;
+			const pageHeight = document.documentElement.scrollHeight;
+
+			if (scrolledTo >= pageHeight - 4) {
+				setIsBottomPopupOpen(true);
+				setHasShownBottomPopup(true);
+			}
+		};
+
+		window.addEventListener("scroll", checkIfAtBottom, { passive: true });
+		return () => window.removeEventListener("scroll", checkIfAtBottom);
+	}, [hasShownBottomPopup]);
+
+	useEffect(() => {
+		const previousOverflow = document.body.style.overflow;
+		if (isWelcomePopupOpen || isBottomPopupOpen) {
+			document.body.style.overflow = "hidden";
+		}
+
+		return () => {
+			document.body.style.overflow = previousOverflow;
+		};
+	}, [isWelcomePopupOpen, isBottomPopupOpen]);
+
 	return (
 		<div className={`${bodyFont.className} min-h-screen bg-[#c9bdd9] text-[#332f3f]`}>
+			<PopupImageModal
+				isOpen={isWelcomePopupOpen}
+				onClose={() => setIsWelcomePopupOpen(false)}
+				src="/popup1.png"
+				alt={content.welcomePopupAlt}
+				imageWidth={456}
+				imageHeight={257}
+			/>
+			<PopupImageModal
+				isOpen={isBottomPopupOpen}
+				onClose={() => setIsBottomPopupOpen(false)}
+				src="/popup2.png"
+				alt={content.newsletterPopupAlt}
+				imageWidth={456}
+				imageHeight={390}
+			/>
 			<header className="sticky top-0 z-10 border-b border-[#7f679f] bg-[#7d58ae] text-white">
 				<div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-3 py-2 sm:px-6">
 					<div className="flex items-center gap-3">
