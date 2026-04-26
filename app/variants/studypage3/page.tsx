@@ -5,6 +5,7 @@ import { siteData } from "@/lib/shared-data";
 import Image from "next/image";
 import { Mada, Marcellus_SC } from "next/font/google";
 import { useEffect, useState } from "react";
+import { useVariant } from "@/lib/VariantContext";
 
 const titleFont = Marcellus_SC({
 	weight: "400",
@@ -179,9 +180,10 @@ export default function StudyPage3() {
 	const { locale } = useLocale();
 	const content = pageContent[locale];
 	const info = siteData[locale];
-	const [isWelcomePopupOpen, setIsWelcomePopupOpen] = useState(true);
+	const { studyGroup } = useVariant();
+	const [isWelcomePopupOpen, setIsWelcomePopupOpen] = useState(studyGroup === "A");
 	const [isBottomPopupOpen, setIsBottomPopupOpen] = useState(false);
-	const [hasShownBottomPopup, setHasShownBottomPopup] = useState(false);
+	const [hasShownBottomPopup, setHasShownBottomPopup] = useState(studyGroup === "B");
 
 	useEffect(() => {
 		const previousBodyBackground = document.body.style.backgroundColor;

@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useLocale } from "@/lib/LocaleContext";
 import Image from "next/image";
-import { siteData } from "@/lib/shared-data";
+import { siteData, getEmployees } from "@/lib/shared-data";
+import { useVariant } from "@/lib/VariantContext";
 import { useEffect, useRef, useState } from "react";
 
 const pageContent = {
@@ -402,6 +403,8 @@ export default function StudyPage2() {
 	const { locale } = useLocale();
 	const t = pageContent[locale];
 	const business = siteData[locale];
+	const { studyGroup } = useVariant();
+	const employees = getEmployees(locale, studyGroup);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const scrollToSection = (id: string) => {
@@ -578,7 +581,7 @@ export default function StudyPage2() {
 				{/* Team Section */}
 				<section id="team" className="py-16 bg-[#F5F2EB]">
                     <ExpertsCarousel 
-                        experts={business.employees} 
+                        experts={employees} 
                         title={t.teamTitle} 
                         description={t.teamDescription} 
                     />

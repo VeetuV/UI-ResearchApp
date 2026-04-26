@@ -3,6 +3,7 @@
 import { useLocale } from "@/lib/LocaleContext";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { useVariant } from "@/lib/VariantContext";
 
 /* ────────────────────────────────────────────
    Inline bilingual content for the Hieronta page
@@ -395,6 +396,7 @@ function Stars({ count }: { count: number }) {
 export default function StudyPage1() {
 	const { locale } = useLocale();
 	const t = content[locale];
+	const { studyGroup } = useVariant();
 	const [mobileMenu, setMobileMenu] = useState(false);
 
 	/* Section IDs for anchor scrolling */
@@ -414,7 +416,7 @@ export default function StudyPage1() {
 	return (
 		<div className="min-h-screen bg-[#FAF7F2] text-[#2D2A26] font-[system-ui]">
 			{/* ─── NAVIGATION ─── */}
-			<nav className="sticky top-0 z-30 border-b border-[#E8E0D4] bg-[#FAF7F2]/90 backdrop-blur-md">
+			<nav className={`${studyGroup === "A" ? "sticky top-0" : ""} z-30 border-b border-[#E8E0D4] bg-[#FAF7F2]/90 backdrop-blur-md`}>
 				<div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 					{/* Brand */}
 					<button

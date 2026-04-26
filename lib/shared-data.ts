@@ -1,3 +1,5 @@
+import type { StudyGroup } from "@/lib/VariantContext";
+
 export const siteData = {
 	fi: {
 		siteName: "Hyvinvointikeskus",
@@ -88,3 +90,29 @@ export const siteData = {
 		],
 	},
 } as const;
+
+/**
+ * Maps each employee ID to its stock-photo path.
+ * Only employee images change between groups; all other data stays the same.
+ */
+const stockImageMap: Record<string, string> = {
+	e1: "/stock-photos/employee1-stock.jpg",
+	e2: "/stock-photos/employee2-stock.jpg",
+	e3: "/stock-photos/employee3-stock.jpg",
+	e4: "/stock-photos/employee4-stock.jpg",
+	e5: "/stock-photos/employee5-stock.jpg",
+};
+
+/**
+ * Returns the employee list for the given locale, with images swapped
+ * to stock photos when the participant is in group B.
+ */
+export function getEmployees(locale: "fi" | "en", studyGroup: StudyGroup) {
+	const employees = siteData[locale].employees;
+	if (studyGroup === "A") return employees;
+
+	return employees.map((emp) => ({
+		...emp,
+		image: stockImageMap[emp.id] ?? emp.image,
+	}));
+}

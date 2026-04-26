@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/lib/LocaleContext";
+import { useVariant } from "@/lib/VariantContext";
 import { usePathname, useRouter } from "next/navigation";
 
 const studyRoutes = [
@@ -14,10 +15,11 @@ type SurveyModalProps = {
 	onClose: () => void;
 };
 
-const webropolSurveyUrl = process.env.NEXT_PUBLIC_WEBROPOL_SURVEY_URL?.trim() ?? "";
+
 
 export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 	const { messages } = useLocale();
+	const { surveyUrl } = useVariant();
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -62,10 +64,10 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
 				{/* Iframe Container for webropol survey */}
 				<div className="relative mt-6 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-					{webropolSurveyUrl ? (
+					{surveyUrl ? (
 						<iframe
 							title={messages.survey.title}
-							src={webropolSurveyUrl}
+							src={surveyUrl}
 							style={{
 								width: '125%', 
 								height: '125%', // Uses 125% of the dynamic parent height

@@ -35,6 +35,7 @@ It looks really cool! But the arrow should be on the same level, after the first
 The carousel is great but it does not fade in like the other elements. Also add a bit more colour to the background
 
 There is an error.  it Happened after trying to fix object fade in
+
 Unexpected token. Did you mean `{'>'}` or `&gt;`?
   380 | );
   381 |

@@ -1,77 +1,80 @@
 # UI Research App
 
-This project is a web app for a university UX research study.
-
-The goal is to measure user trust across multiple interface variants while keeping the flow neutral and consistent.
+A university UX research web app that measures trust across different interface variants. Participants are randomly split into two groups that see slightly different versions of the same pages.
 
 ## Tech Stack
 
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- Hosted on vercel
+- Next.js 16 (App Router), TypeScript, Tailwind CSS
+- Hosted on Vercel
 
-## Current Study Flow
+## Study Flow
 
-1. Participant lands on the intro page (`/`) and reads instructions.
-2. Participant starts the study and goes to neutral pages in sequence:
-	- `/variants/studypage1`
-	- `/variants/studypage2`
-	- `/variants/studypage3`
-3. On study pages, a floating survey button opens the survey modal.
-4. In the survey modal:
-	- `Back` returns to index (`/`)
-	- `Next` advances to the next study page
+1. Participant lands on the intro page (`/`), reads instructions, chooses language.
+2. On first visit, the app randomly assigns them to **Group A** or **Group B** (50/50, persisted in `localStorage`).
+3. Participant progresses through three study pages in order:
+	- `/variants/studypage1` → `/variants/studypage2` → `/variants/studypage3`
+4. On each study page, the floating survey button opens a modal with an embedded Webropol questionnaire.
+5. Modal controls: **Back** returns to `/`, **Next** advances to the next study page.
 
-## Localization
+## A/B Groups
 
-- Supported languages: Finnish (`fi`) and English (`en`)
-- Default language: Finnish
-- Language can be switched from the intro page
+Each group gets its own Webropol survey URL (configured via env vars). The pages also differ slightly per group:
 
-## Why The UI Looks Neutral
+| Page | Group A | Group B |
+|------|---------|---------|
+| studypage1 | Sticky navbar | Static navbar |
+| studypage2 | AI-generated employee photos | Stock photos |
+| studypage3 | Welcome + bottom-of-page popups | No popups |
 
-To reduce bias in study outcomes:
+## Project Structure
 
-- Page routes and labels use neutral naming (`studypage1`, `studypage2`, `studypage3`)
-- Descriptive category labels are avoided in participant-facing flow
-- Extra navigation is intentionally minimal
+```
+app/
+  page.tsx                          # Intro page
+  layout.tsx                        # Root layout (LocaleProvider + VariantProvider)
+  variants/
+    studypage1/page.tsx             # Study page 1
+    studypage2/page.tsx             # Study page 2
+    studypage3/page.tsx             # Study page 3
+components/
+  FloatingSurveyButton.tsx          # Survey trigger (hidden on /)
+  SurveyModal.tsx                   # Survey modal with Back/Next
+lib/
+  i18n.ts                           # Translations (fi/en)
+  LocaleContext.tsx                 # Language state
+  VariantContext.tsx                # A/B group assignment + survey URL
+  shared-data.ts                   # Shared business data + getEmployees()
+```
 
-## Project Structure (Key Files)
+## Environment Variables
 
-- `app/page.tsx`: Intro page + language switch + start study action
-- `app/variants/studypage1/page.tsx`: Study page 1
-- `app/variants/studypage2/page.tsx`: Study page 2
-- `app/variants/studypage3/page.tsx`: Study page 3
-- `components/FloatingSurveyButton.tsx`: Floating survey trigger on study pages
-- `components/SurveyModal.tsx`: Survey modal UI + Back/Next behavior
-- `lib/i18n.ts`: Locale messages and defaults
-- `lib/LocaleContext.tsx`: Locale state and message access
-- `lib/shared-data.ts`: Website info that is shared on multiple variants, for easier editing.
+Create `.env.local`:
+
+```
+NEXT_PUBLIC_SURVEY_URL_A=https://your-webropol-survey-url-for-group-a
+NEXT_PUBLIC_SURVEY_URL_B=https://your-webropol-survey-url-for-group-b
+```
 
 ## Getting Started
-
-Install dependencies and run the dev server:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open: http://localhost:3000
+Open http://localhost:3000
 
-## Webropol Survey Embed
+## Testing Groups
 
-To embed a Webropol survey in the modal via iframe, create `.env.local` and configure:
+The assigned group is stored in `localStorage` under key `ux-study-group`. To switch groups:
 
-NEXT_PUBLIC_WEBROPOL_SURVEY_URL=https://your-webropol-survey-url
-
-
-Note: the survey URL must allow iframe embedding from your app domain.
+1. Open DevTools → Application → Local Storage → `http://localhost:3000`
+2. Change `ux-study-group` to `A` or `B` (or delete it to re-randomize)
+3. Refresh the page
 
 ## Notes For Contributors
 
-- Keep the participant flow neutral unless a study requirement changes.
-- Avoid introducing category-like labels in the main user path.
-- If you modify survey navigation, verify Back and Next behavior still matches the flow above.
-- If using LLM:s ask them to read AGENTS.md
+- Keep the participant flow neutral — avoid category labels in visible UI.
+- Do not expose group assignment (A/B) in participant-facing text.
+- If modifying survey navigation, verify Back and Next still work.
+- If using LLMs, ask them to read AGENTS.md first.
