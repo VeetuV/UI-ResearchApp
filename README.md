@@ -12,7 +12,7 @@ A university UX research web app that measures trust across different interface 
 1. Participant lands on the intro page (`/`), reads instructions, chooses language.
 2. On first visit, the app randomly assigns them to **Group A** or **Group B** (50/50, persisted in `localStorage`).
 3. Participant progresses through three study pages in order:
-	- `/variants/studypage1` → `/variants/studypage2` → `/variants/studypage3`
+	- `/studypage1` → `/studypage2` → `/studypage3`
 4. On each study page, the floating survey button opens a modal with an embedded Webropol questionnaire.
 5. Modal controls: **Back** returns to `/`, **Next** advances to the next study page.
 
@@ -32,10 +32,9 @@ Each group gets its own Webropol survey URL (configured via env vars). The pages
 app/
   page.tsx                          # Intro page
   layout.tsx                        # Root layout (LocaleProvider + VariantProvider)
-  variants/
-    studypage1/page.tsx             # Study page 1
-    studypage2/page.tsx             # Study page 2
-    studypage3/page.tsx             # Study page 3
+  studypage1/page.tsx               # Study page 1 → /studypage1
+  studypage2/page.tsx               # Study page 2 → /studypage2
+  studypage3/page.tsx               # Study page 3 → /studypage3
 components/
   FloatingSurveyButton.tsx          # Survey trigger (hidden on /)
   SurveyModal.tsx                   # Survey modal with Back/Next

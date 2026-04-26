@@ -5,9 +5,9 @@ import { useVariant } from "@/lib/VariantContext";
 import { usePathname, useRouter } from "next/navigation";
 
 const studyRoutes = [
-	"/variants/studypage1",
-	"/variants/studypage2",
-	"/variants/studypage3",
+	"/studypage1",
+	"/studypage2",
+	"/studypage3",
 ];
 
 type SurveyModalProps = {

@@ -49,7 +49,7 @@ export default function Home() {
           </p>
 
           <Link
-            href="/variants/studypage1"
+            href="/studypage1"
             className="mt-8 inline-flex rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
           >
             {messages.intro.begin}

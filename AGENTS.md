@@ -12,7 +12,7 @@ This repository is a university UX research web app that measures trust across d
 - Near-future backend: Supabase (not connected yet).
 - Current flow:
 	- Index page (`/`) is an intro/instructions page.
-	- Study pages are neutral and sequential: `/variants/studypage1`, `/variants/studypage2`, `/variants/studypage3`.
+	- Study pages are neutral and sequential: `/studypage1`, `/studypage2`, `/studypage3`.
 	- A floating survey button is visible on study pages (hidden on `/`).
 	- Survey modal has Back and Next controls:
 		- Back returns to `/`.
