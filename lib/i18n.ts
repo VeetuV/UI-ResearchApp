@@ -39,6 +39,7 @@ type Messages = {
     page1Title: string;
     page2Title: string;
     page3Title: string;
+    page4Title: string;
     pageBody: string;
   };
 };
@@ -68,7 +69,8 @@ const messages: Record<Locale, Messages> = {
     survey: {
       title: "Arviointikysely",
       description: "Tähän lisätään myöhemmin varsinainen kyselylomake.",
-      notConfigured: "Aseta NEXT_PUBLIC_WEBROPOL_SURVEY_URL, jotta kysely upotetaan tähän.",
+      notConfigured:
+        "Aseta NEXT_PUBLIC_WEBROPOL_SURVEY_URL, jotta kysely upotetaan tähän.",
       close: "Sulje",
       back: "Takaisin",
       next: "Seuraava",
@@ -80,7 +82,9 @@ const messages: Record<Locale, Messages> = {
       page1Title: "Tutkimussivu 1",
       page2Title: "Tutkimussivu 2",
       page3Title: "Tutkimussivu 3",
-      pageBody: "Tarkastele sivua normaalisti ja käytä kelluvaa kyselypainiketta vastataksesi.",
+      page4Title: "Tutkimussivu 4",
+      pageBody:
+        "Tarkastele sivua normaalisti ja käytä kelluvaa kyselypainiketta vastataksesi.",
     },
   },
   en: {
@@ -107,7 +111,8 @@ const messages: Record<Locale, Messages> = {
     survey: {
       title: "UX Survey",
       description: "The full questionnaire form will be embedded here later.",
-      notConfigured: "Set NEXT_PUBLIC_WEBROPOL_SURVEY_URL to embed the survey here.",
+      notConfigured:
+        "Set NEXT_PUBLIC_WEBROPOL_SURVEY_URL to embed the survey here.",
       close: "Close",
       back: "Back",
       next: "Next",
@@ -119,7 +124,9 @@ const messages: Record<Locale, Messages> = {
       page1Title: "Study Page 1",
       page2Title: "Study Page 2",
       page3Title: "Study Page 3",
-      pageBody: "Review the page naturally and use the floating survey button to submit your response.",
+      page4Title: "Study Page 4",
+      pageBody:
+        "Review the page naturally and use the floating survey button to submit your response.",
     },
   },
 };
