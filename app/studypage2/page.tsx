@@ -525,7 +525,7 @@ export default function StudyPage2() {
 						<FadeIn direction="up" delay={200}>
 							<div className="relative h-[350px] lg:h-[550px] w-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
 								<Image
-									src="/massage-hero-new.png"
+									src={studyGroup === "B" ? "/stock-photos/massage-hero-stock.jpg" : "/massage-hero-new.png"}
 									alt="Massage therapy session"
 									fill
 									priority
