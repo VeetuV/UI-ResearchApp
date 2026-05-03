@@ -402,6 +402,69 @@ export default function StudyPage1() {
 	const { studyGroup } = useVariant();
 	const [mobileMenu, setMobileMenu] = useState(false);
 
+	const theme = studyGroup === "B" ? {
+		bg: "bg-zinc-950",
+		text: "text-zinc-100",
+		navBg: "bg-zinc-950/90",
+		borderLight: "border-zinc-800",
+		brand: "text-yellow-400",
+		navLink: "text-zinc-400 transition hover:text-yellow-400",
+		btnBg: "bg-yellow-400 hover:bg-yellow-500",
+		btnSecondary: "border-yellow-400/30 text-yellow-400 transition hover:border-yellow-400/60 hover:bg-yellow-400/10",
+		footerBg: "bg-zinc-900",
+		footerText: "text-zinc-500",
+		gradientHero: "from-zinc-950/95 via-zinc-950/80 to-zinc-950/40",
+		gradientAbout: "from-zinc-900 to-zinc-950",
+		badgeBg: "bg-yellow-400/10",
+		badgeText: "text-yellow-400",
+		cardHover: "hover:shadow-yellow-400/10",
+		iconBg: "bg-zinc-900",
+		iconText: "text-yellow-400",
+		inputBg: "bg-zinc-900",
+		inputFocus: "focus:border-yellow-400 focus:ring-yellow-400/20",
+		priceHighlightBg: "bg-yellow-400",
+		priceHighlightIcon: "text-zinc-900",
+		priceStandardIcon: "text-yellow-400",
+		shadowBtn: "shadow-yellow-400/25",
+		textMuted: "text-zinc-400",
+		hoverTextBrand: "hover:text-yellow-400",
+        btnText: "text-zinc-950",
+        cardBg: "bg-zinc-900",
+        btnSecondaryText: "text-yellow-400",
+        textInverted: "text-zinc-950",
+	} : {
+		bg: "bg-[#FAF7F2]",
+		text: "text-[#2D2A26]",
+		navBg: "bg-[#FAF7F2]/90",
+		borderLight: "border-[#E8E0D4]",
+		brand: "text-[#6B4F3A]",
+		navLink: "text-[#6B5D4F] transition hover:text-[#6B4F3A]",
+		btnBg: "bg-[#6B4F3A] hover:bg-[#574030]",
+		btnSecondary: "border-[#6B4F3A]/30 text-[#6B4F3A] transition hover:border-[#6B4F3A]/60 hover:bg-[#6B4F3A]/5",
+		footerBg: "bg-[#F3EDE4]",
+		footerText: "text-[#9A8D7F]",
+		gradientHero: "from-[#FAF7F2]/95 via-[#FAF7F2]/80 to-[#FAF7F2]/40",
+		gradientAbout: "from-[#F3EDE4] to-[#FAF7F2]",
+		badgeBg: "bg-[#6B4F3A]/10",
+		badgeText: "text-[#6B4F3A]",
+		cardHover: "hover:shadow-[#6B4F3A]/8",
+		iconBg: "bg-[#F3EDE4]",
+		iconText: "text-[#6B4F3A]",
+		inputBg: "bg-[#FAF7F2]",
+		inputFocus: "focus:border-[#6B4F3A] focus:ring-[#6B4F3A]/20",
+		priceHighlightBg: "bg-[#6B4F3A]",
+		priceHighlightIcon: "text-amber-300",
+		priceStandardIcon: "text-[#6B4F3A]",
+		shadowBtn: "shadow-[#6B4F3A]/25",
+		textMuted: "text-[#6B5D4F]",
+		hoverTextBrand: "hover:text-[#6B4F3A]",
+        btnText: "text-white",
+        cardBg: "bg-white",
+        btnSecondaryText: "text-[#6B4F3A]",
+        textInverted: "text-white",
+	};
+
+
 	/* Section IDs for anchor scrolling */
 	const sectionIds = [
 		"palvelut",
@@ -417,14 +480,14 @@ export default function StudyPage1() {
 	};
 
 	return (
-		<div className="min-h-screen bg-[#FAF7F2] text-[#2D2A26] font-[system-ui]">
+		<div className={`min-h-screen ${theme.bg} ${theme.text} font-[system-ui]`}>
 			{/* ─── NAVIGATION ─── */}
-			<nav className={`${studyGroup === "A" ? "sticky top-0" : ""} z-30 border-b border-[#E8E0D4] bg-[#FAF7F2]/90 backdrop-blur-md`}>
+			<nav className={`${studyGroup === "A" ? "sticky top-0" : ""} z-30 border-b ${theme.borderLight} ${theme.navBg} backdrop-blur-md`}>
 				<div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 					{/* Brand */}
 					<button
 						onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-						className={`text-2xl font-bold tracking-tight text-[#6B4F3A] ${logoFont.className}`}
+						className={`text-2xl font-bold tracking-tight ${theme.brand} ${logoFont.className}`}
 					>
 						{t.nav.brand}
 					</button>
@@ -435,7 +498,7 @@ export default function StudyPage1() {
 							<li key={link}>
 								<button
 									onClick={() => scrollTo(sectionIds[i])}
-									className="text-sm font-medium text-[#6B5D4F] transition hover:text-[#6B4F3A]"
+									className={`text-sm font-medium ${theme.navLink}`}
 								>
 									{link}
 								</button>
@@ -447,13 +510,13 @@ export default function StudyPage1() {
 					<div className="flex items-center gap-3">
 						<button
 							onClick={() => scrollTo("yhteystiedot")}
-							className="hidden rounded-full bg-[#6B4F3A] px-5 py-2 text-sm font-semibold text-white shadow transition hover:bg-[#574030] sm:inline-flex"
+							className={`hidden rounded-full ${theme.priceHighlightBg} px-5 py-2 text-sm font-semibold ${theme.btnText} shadow transition ${theme.btnBg.replace('bg-yellow-400 ', '').replace('bg-[#6B4F3A] ', '')} sm:inline-flex`}
 						>
 							{t.hero.cta}
 						</button>
 						<button
 							onClick={() => setMobileMenu(!mobileMenu)}
-							className="rounded-md p-2 text-[#6B5D4F] md:hidden"
+							className={`rounded-md p-2 ${theme.textMuted} md:hidden`}
 							aria-label="Menu"
 						>
 							<svg
@@ -484,12 +547,12 @@ export default function StudyPage1() {
 
 				{/* Mobile dropdown */}
 				{mobileMenu && (
-					<div className="border-t border-[#E8E0D4] px-6 pb-4 md:hidden">
+					<div className={`border-t ${theme.borderLight} px-6 pb-4 md:hidden`}>
 						{t.nav.links.map((link, i) => (
 							<button
 								key={link}
 								onClick={() => scrollTo(sectionIds[i])}
-								className="block w-full py-3 text-left text-sm font-medium text-[#6B5D4F] transition hover:text-[#6B4F3A]"
+								className={`block w-full py-3 text-left text-sm font-medium ${theme.navLink}`}
 							>
 								{link}
 							</button>
@@ -509,30 +572,30 @@ export default function StudyPage1() {
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-gradient-to-r from-[#FAF7F2]/95 via-[#FAF7F2]/80 to-[#FAF7F2]/40" />
+					<div className={`absolute inset-0 bg-gradient-to-r ${theme.gradientHero}`} />
 				</div>
 
 				<div className="relative mx-auto flex max-w-7xl flex-col justify-center px-6 py-28 sm:py-36 lg:py-44">
 					<FadeSection>
-						<span className="mb-4 inline-block rounded-full bg-[#6B4F3A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#6B4F3A]">
+						<span className={`mb-4 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>
 							{t.hero.tagline}
 						</span>
-						<h1 className="max-w-2xl text-4xl font-extrabold leading-tight tracking-tight text-[#2D2A26] sm:text-5xl lg:text-6xl">
+						<h1 className={`max-w-2xl text-4xl font-extrabold leading-tight tracking-tight ${theme.text} sm:text-5xl lg:text-6xl`}>
 							{t.hero.title}
 						</h1>
-						<p className="mt-6 max-w-xl text-lg leading-relaxed text-[#6B5D4F]">
+						<p className={`mt-6 max-w-xl text-lg leading-relaxed ${theme.textMuted}`}>
 							{t.hero.subtitle}
 						</p>
 						<div className="mt-10 flex flex-wrap gap-4">
 							<button
 								onClick={() => scrollTo("yhteystiedot")}
-								className="rounded-full bg-[#6B4F3A] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#6B4F3A]/25 transition hover:bg-[#574030] hover:shadow-xl"
+								className={`rounded-full ${theme.priceHighlightBg} px-8 py-3.5 text-sm font-semibold ${theme.btnText} shadow-lg ${theme.shadowBtn} transition ${theme.btnBg.replace('bg-yellow-400 ', '').replace('bg-[#6B4F3A] ', '')} hover:shadow-xl`}
 							>
 								{t.hero.cta}
 							</button>
 							<button
 								onClick={() => scrollTo("palvelut")}
-								className="rounded-full border-2 border-[#6B4F3A]/30 px-8 py-3.5 text-sm font-semibold text-[#6B4F3A] transition hover:border-[#6B4F3A]/60 hover:bg-[#6B4F3A]/5"
+								className={`rounded-full border-2 border-[#6B4F3A]/30 px-8 py-3.5 text-sm font-semibold ${theme.brand} transition hover:border-[#6B4F3A]/60 hover:${theme.priceHighlightBg}/5`}
 							>
 								{t.hero.secondary}
 							</button>
@@ -545,13 +608,13 @@ export default function StudyPage1() {
 			<section id="palvelut" className="py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6">
 					<FadeSection className="text-center">
-						<span className="mb-3 inline-block rounded-full bg-[#6B4F3A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#6B4F3A]">
+						<span className={`mb-3 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>
 							{t.services.badge}
 						</span>
 						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 							{t.services.title}
 						</h2>
-						<p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#6B5D4F]">
+						<p className={`mx-auto mt-4 max-w-2xl text-base leading-relaxed ${theme.textMuted}`}>
 							{t.services.subtitle}
 						</p>
 					</FadeSection>
@@ -559,15 +622,15 @@ export default function StudyPage1() {
 					<div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 						{t.services.items.map((svc, i) => (
 							<FadeSection key={svc.name} delay={`${i * 80}ms`}>
-								<div className="group relative flex h-full flex-col rounded-2xl border border-[#E8E0D4] bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#6B4F3A]/8">
+								<div className={`group relative flex h-full flex-col rounded-2xl border ${theme.borderLight} ${theme.cardBg} p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${theme.cardHover}`}>
 									<span className="mb-4 text-3xl">{svc.icon}</span>
-									<h3 className="text-lg font-bold text-[#2D2A26]">
+									<h3 className={`text-lg font-bold ${theme.text}`}>
 										{svc.name}
 									</h3>
-									<p className="mt-2 flex-1 text-sm leading-relaxed text-[#6B5D4F]">
+									<p className={`mt-2 flex-1 text-sm leading-relaxed ${theme.textMuted}`}>
 										{svc.desc}
 									</p>
-									<span className="mt-4 inline-block rounded-full bg-[#F3EDE4] px-3 py-1 text-xs font-semibold text-[#6B4F3A]">
+									<span className={`mt-4 inline-block rounded-full ${theme.footerBg} px-3 py-1 text-xs font-semibold ${theme.brand}`}>
 										{svc.duration}
 									</span>
 								</div>
@@ -580,7 +643,7 @@ export default function StudyPage1() {
 			{/* ─── ABOUT ─── */}
 			<section
 				id="meista"
-				className="bg-gradient-to-b from-[#F3EDE4] to-[#FAF7F2] py-24 sm:py-32"
+				className={`bg-gradient-to-b ${theme.gradientAbout} py-24 sm:py-32`}
 			>
 				<div className="mx-auto max-w-7xl px-6">
 					<div className="grid items-center gap-16 lg:grid-cols-2">
@@ -597,23 +660,23 @@ export default function StudyPage1() {
 						</FadeSection>
 
 						<FadeSection delay="150ms">
-							<span className="mb-3 inline-block rounded-full bg-[#6B4F3A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#6B4F3A]">
+							<span className={`mb-3 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>
 								{t.about.badge}
 							</span>
 							<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 								{t.about.title}
 							</h2>
-							<p className="mt-6 text-base leading-relaxed text-[#6B5D4F]">
+							<p className={`mt-6 text-base leading-relaxed ${theme.textMuted}`}>
 								{t.about.body}
 							</p>
 
 							<div className="mt-10 grid grid-cols-3 gap-6">
 								{t.about.stats.map((s) => (
 									<div key={s.label}>
-										<p className="text-3xl font-extrabold text-[#6B4F3A]">
+										<p className={`text-3xl font-extrabold ${theme.brand}`}>
 											{s.value}
 										</p>
-										<p className="mt-1 text-sm text-[#6B5D4F]">{s.label}</p>
+										<p className={`mt-1 text-sm ${theme.textMuted}`}>{s.label}</p>
 									</div>
 								))}
 							</div>
@@ -626,7 +689,7 @@ export default function StudyPage1() {
 			<section id="arvostelut" className="py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6">
 					<FadeSection className="text-center">
-						<span className="mb-3 inline-block rounded-full bg-[#6B4F3A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#6B4F3A]">
+						<span className={`mb-3 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>
 							{t.testimonials.badge}
 						</span>
 						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -637,14 +700,14 @@ export default function StudyPage1() {
 					<div className="mt-16 grid gap-8 md:grid-cols-3">
 						{t.testimonials.items.map((rev, i) => (
 							<FadeSection key={rev.author} delay={`${i * 100}ms`}>
-								<div className="flex h-full flex-col rounded-2xl border border-[#E8E0D4] bg-white p-8 shadow-sm">
+								<div className={`flex h-full flex-col rounded-2xl border ${theme.borderLight} ${theme.cardBg} p-8 shadow-sm`}>
 									<Stars count={rev.rating} />
-									<p className="mt-5 flex-1 text-sm italic leading-relaxed text-[#6B5D4F]">
+									<p className={`mt-5 flex-1 text-sm italic leading-relaxed ${theme.textMuted}`}>
 										&ldquo;{rev.text}&rdquo;
 									</p>
-									<div className="mt-6 border-t border-[#E8E0D4] pt-5">
-										<p className="font-bold text-[#2D2A26]">{rev.author}</p>
-										<p className="text-xs text-[#9A8D7F]">{rev.role}</p>
+									<div className={`mt-6 border-t ${theme.borderLight} pt-5`}>
+										<p className={`font-bold ${theme.text}`}>{rev.author}</p>
+										<p className={`text-xs ${theme.footerText}`}>{rev.role}</p>
 									</div>
 								</div>
 							</FadeSection>
@@ -656,17 +719,17 @@ export default function StudyPage1() {
 			{/* ─── PRICING ─── */}
 			<section
 				id="hinnasto"
-				className="bg-gradient-to-b from-[#F3EDE4] to-[#FAF7F2] py-24 sm:py-32"
+				className={`bg-gradient-to-b ${theme.gradientAbout} py-24 sm:py-32`}
 			>
 				<div className="mx-auto max-w-7xl px-6">
 					<FadeSection className="text-center">
-						<span className="mb-3 inline-block rounded-full bg-[#6B4F3A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#6B4F3A]">
+						<span className={`mb-3 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>
 							{t.pricing.badge}
 						</span>
 						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 							{t.pricing.title}
 						</h2>
-						<p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[#6B5D4F]">
+						<p className={`mx-auto mt-4 max-w-xl text-base leading-relaxed ${theme.textMuted}`}>
 							{t.pricing.subtitle}
 						</p>
 					</FadeSection>
@@ -677,28 +740,28 @@ export default function StudyPage1() {
 								<div
 									className={`relative flex h-full flex-col rounded-2xl border p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
 										plan.highlight
-											? "border-[#6B4F3A] bg-[#6B4F3A] text-white"
-											: "border-[#E8E0D4] bg-white"
+											? `border-[#6B4F3A] ${theme.priceHighlightBg} ${theme.btnText}`
+											: `${theme.borderLight} ${theme.cardBg}`
 									}`}
 								>
 									{plan.highlight && (
-										<span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-3 py-0.5 text-xs font-bold text-[#2D2A26]">
+										<span className={`absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-3 py-0.5 text-xs font-bold ${theme.textInverted}`}>
 											{locale === "fi" ? "Suosituin" : "Most popular"}
 										</span>
 									)}
 									<h3
-										className={`text-lg font-bold ${plan.highlight ? "text-white" : "text-[#2D2A26]"}`}
+										className={`text-lg font-bold ${plan.highlight ? theme.btnText : theme.text}`}
 									>
 										{plan.name}
 									</h3>
 									<div className="mt-4 flex items-baseline gap-1">
 										<span
-											className={`text-4xl font-extrabold ${plan.highlight ? "text-white" : "text-[#6B4F3A]"}`}
+											className={`text-4xl font-extrabold ${plan.highlight ? theme.btnText : theme.brand}`}
 										>
 											{plan.price} €
 										</span>
 										<span
-											className={`text-sm ${plan.highlight ? "text-white/70" : "text-[#9A8D7F]"}`}
+											className={`text-sm ${plan.highlight ? theme.btnText + "/70" : theme.footerText}`}
 										>
 											{plan.unit}
 										</span>
@@ -707,7 +770,7 @@ export default function StudyPage1() {
 										{plan.features.map((f) => (
 											<li key={f} className="flex items-start gap-3 text-sm">
 												<svg
-													className={`mt-0.5 h-4 w-4 flex-shrink-0 ${plan.highlight ? "text-amber-300" : "text-[#6B4F3A]"}`}
+													className={`mt-0.5 h-4 w-4 flex-shrink-0 ${plan.highlight ? theme.priceHighlightIcon : theme.brand}`}
 													fill="none"
 													stroke="currentColor"
 													viewBox="0 0 24 24"
@@ -722,8 +785,8 @@ export default function StudyPage1() {
 												<span
 													className={
 														plan.highlight
-															? "text-white/90"
-															: "text-[#6B5D4F]"
+															? `${theme.btnText}/90`
+															: theme.textMuted
 													}
 												>
 													{f}
@@ -735,8 +798,8 @@ export default function StudyPage1() {
 										onClick={() => scrollTo("yhteystiedot")}
 										className={`mt-8 w-full rounded-full py-3 text-sm font-semibold transition ${
 											plan.highlight
-												? "bg-white text-[#6B4F3A] hover:bg-white/90"
-												: "bg-[#6B4F3A] text-white hover:bg-[#574030]"
+												? `${theme.cardBg} ${theme.brand} hover:${theme.cardBg}/90`
+												: `${theme.priceHighlightBg} ${theme.btnText} ${theme.btnBg.replace('bg-yellow-400 ', '')}`
 										}`}
 									>
 										{t.hero.cta}
@@ -752,7 +815,7 @@ export default function StudyPage1() {
 			<section id="yhteystiedot" className="py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6">
 					<FadeSection className="text-center">
-						<span className="mb-3 inline-block rounded-full bg-[#6B4F3A]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#6B4F3A]">
+						<span className={`mb-3 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>
 							{t.contact.badge}
 						</span>
 						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -763,7 +826,7 @@ export default function StudyPage1() {
 					<div className="mt-16 grid gap-12 lg:grid-cols-2">
 						{/* Info side */}
 						<FadeSection delay="100ms">
-							<div className="rounded-2xl border border-[#E8E0D4] bg-white p-8">
+							<div className={`rounded-2xl border ${theme.borderLight} ${theme.cardBg} p-8`}>
 								<div className="overflow-hidden rounded-xl">
 									<Image
 										src="/massage-oils.png"
@@ -776,7 +839,7 @@ export default function StudyPage1() {
 								<div className="mt-8 space-y-5">
 									{/* Address */}
 									<div className="flex items-start gap-4">
-										<div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#F3EDE4] text-[#6B4F3A]">
+										<div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full ${theme.footerBg} ${theme.brand}`}>
 											<svg
 												className="h-5 w-5"
 												fill="none"
@@ -797,13 +860,13 @@ export default function StudyPage1() {
 												/>
 											</svg>
 										</div>
-										<p className="pt-2 text-sm text-[#6B5D4F]">
+										<p className={`pt-2 text-sm ${theme.textMuted}`}>
 											{t.contact.address}
 										</p>
 									</div>
 									{/* Phone */}
 									<div className="flex items-start gap-4">
-										<div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#F3EDE4] text-[#6B4F3A]">
+										<div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full ${theme.footerBg} ${theme.brand}`}>
 											<svg
 												className="h-5 w-5"
 												fill="none"
@@ -818,13 +881,13 @@ export default function StudyPage1() {
 												/>
 											</svg>
 										</div>
-										<p className="pt-2 text-sm text-[#6B5D4F]">
+										<p className={`pt-2 text-sm ${theme.textMuted}`}>
 											{t.contact.phone}
 										</p>
 									</div>
 									{/* Email */}
 									<div className="flex items-start gap-4">
-										<div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#F3EDE4] text-[#6B4F3A]">
+										<div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full ${theme.footerBg} ${theme.brand}`}>
 											<svg
 												className="h-5 w-5"
 												fill="none"
@@ -839,13 +902,13 @@ export default function StudyPage1() {
 												/>
 											</svg>
 										</div>
-										<p className="pt-2 text-sm text-[#6B5D4F]">
+										<p className={`pt-2 text-sm ${theme.textMuted}`}>
 											{t.contact.email}
 										</p>
 									</div>
 									{/* Hours */}
 									<div className="flex items-start gap-4">
-										<div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#F3EDE4] text-[#6B4F3A]">
+										<div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full ${theme.footerBg} ${theme.brand}`}>
 											<svg
 												className="h-5 w-5"
 												fill="none"
@@ -862,7 +925,7 @@ export default function StudyPage1() {
 										</div>
 										<div className="space-y-1 pt-2">
 											{t.contact.hours.map((h) => (
-												<p key={h} className="text-sm text-[#6B5D4F]">
+												<p key={h} className={`text-sm ${theme.textMuted}`}>
 													{h}
 												</p>
 											))}
@@ -876,38 +939,38 @@ export default function StudyPage1() {
 						<FadeSection delay="200ms">
 							<form
 								onSubmit={(e) => e.preventDefault()}
-								className="flex flex-col gap-5 rounded-2xl border border-[#E8E0D4] bg-white p-8"
+								className={`flex flex-col gap-5 rounded-2xl border ${theme.borderLight} ${theme.cardBg} p-8`}
 							>
 								<div>
-									<label className="mb-1.5 block text-sm font-medium text-[#2D2A26]">
+									<label className={`mb-1.5 block text-sm font-medium ${theme.text}`}>
 										{t.contact.formName}
 									</label>
 									<input
 										type="text"
-										className="w-full rounded-xl border border-[#E8E0D4] bg-[#FAF7F2] px-4 py-3 text-sm text-[#2D2A26] outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20"
+										className={`w-full rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20`}
 									/>
 								</div>
 								<div>
-									<label className="mb-1.5 block text-sm font-medium text-[#2D2A26]">
+									<label className={`mb-1.5 block text-sm font-medium ${theme.text}`}>
 										{t.contact.formEmail}
 									</label>
 									<input
 										type="email"
-										className="w-full rounded-xl border border-[#E8E0D4] bg-[#FAF7F2] px-4 py-3 text-sm text-[#2D2A26] outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20"
+										className={`w-full rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20`}
 									/>
 								</div>
 								<div>
-									<label className="mb-1.5 block text-sm font-medium text-[#2D2A26]">
+									<label className={`mb-1.5 block text-sm font-medium ${theme.text}`}>
 										{t.contact.formMessage}
 									</label>
 									<textarea
 										rows={5}
-										className="w-full resize-none rounded-xl border border-[#E8E0D4] bg-[#FAF7F2] px-4 py-3 text-sm text-[#2D2A26] outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20"
+										className={`w-full resize-none rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20`}
 									/>
 								</div>
 								<button
 									type="submit"
-									className="mt-2 w-full rounded-full bg-[#6B4F3A] py-3.5 text-sm font-semibold text-white shadow transition hover:bg-[#574030]"
+									className={`mt-2 w-full rounded-full ${theme.priceHighlightBg} py-3.5 text-sm font-semibold ${theme.btnText} shadow transition hover:bg-[#574030]`}
 								>
 									{t.contact.formSubmit}
 								</button>
@@ -918,14 +981,14 @@ export default function StudyPage1() {
 			</section>
 
 			{/* ─── FOOTER ─── */}
-			<footer className="border-t border-[#E8E0D4] bg-[#F3EDE4]">
-				<div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-6 py-8 text-sm text-[#9A8D7F] sm:flex-row sm:justify-between">
+			<footer className={`border-t ${theme.borderLight} ${theme.footerBg}`}>
+				<div className={`mx-auto flex max-w-7xl flex-col items-center gap-4 px-6 py-8 text-sm ${theme.footerText} sm:flex-row sm:justify-between`}>
 					<p>{t.footer.copy}</p>
 					<div className="flex gap-6">
 						{t.footer.links.map((l) => (
 							<button
 								key={l}
-								className="transition hover:text-[#6B4F3A]"
+								className={`transition ${theme.hoverTextBrand}`}
 							>
 								{l}
 							</button>

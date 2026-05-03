@@ -41,11 +41,9 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
   }, [currentRouteIndex]);
 
   const handleBack = () => {
-    onClose();
     if (currentRouteIndex > 0) {
+      onClose();
       router.push(studyRoutes[currentRouteIndex - 1]);
-    } else {
-      router.push("/");
     }
   };
 
@@ -112,12 +110,16 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
         {/* Footer for buttons */}
         <div className="mt-6 flex flex-none items-center justify-between">
-          <button
-            onClick={handleBack}
-            className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700"
-          >
-            {messages.survey.back}
-          </button>
+          {currentRouteIndex > 0 ? (
+            <button
+              onClick={handleBack}
+              className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              {messages.survey.back}
+            </button>
+          ) : (
+            <div />
+          )}
 
           <div className="flex gap-2">
             {studyRoutes.map((route, idx) => {

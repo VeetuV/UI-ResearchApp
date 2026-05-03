@@ -3,6 +3,8 @@
 # 1 Claude Opus 4.6
 Read Agents.md. Create a new page replacing studypage1. Write a complete Next.js (App Router) landing page using Tailwind CSS and TypeScript for a massage service. Design and structure it entirely based on your own assumptions of what makes the best website for this service. Choose the layout, color palette, typography, and copy yourself without asking for my preferences. Provide the complete, functional code.
 
+I want to add something interesting to page1. But before that, remove the option to go to the index page from back button, since that loses survey answers. Make the B version of page1 a different color scheme. A "Cool" color scheme that is more contrasty and less neutral
+
 # 2 Gemini 3.1 Pro
 Ok we go again. Read Agents.md. Create a new page replacing studypage2. Write a complete Next.js (App Router) landing page using Tailwind CSS and TypeScript for a massage service. This time, acording to my feedback. Lets start by making something professional, but human looking, with no direct "AI tells" like emojis. The website should have 4 employees listed, with photos. The employee info will be consistent to other pages that will be made later, alongside other basic info such as the site name, so those can be saved to a variable. Provide the complete, functional code.
 
