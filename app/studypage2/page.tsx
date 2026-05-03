@@ -5,6 +5,10 @@ import Image from "next/image";
 import { siteData, getEmployees } from "@/lib/shared-data";
 import { useVariant } from "@/lib/VariantContext";
 import { useEffect, useRef, useState } from "react";
+import LogoIcon from "@/components/LogoIcon";
+import { Playfair_Display } from "next/font/google";
+
+const logoFont = Playfair_Display({ subsets: ["latin"], weight: ["600", "700"] });
 
 const pageContent = {
 	fi: {
@@ -423,11 +427,12 @@ export default function StudyPage2() {
 			<header className="fixed w-full top-0 z-50 bg-[#DDE4DB]/90 backdrop-blur-md border-b border-[#C8D2C6]">
 				<div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
 					<div className="flex items-center gap-3">
-						<div className="relative w-12 h-12 rounded-full overflow-hidden bg-white/50 border border-[#EBE6DF]">
-							<Image src="/logo.png" alt="Logo" fill sizes="48px" style={{ objectFit: "contain" }} />
+						<div className="relative w-12 h-12 rounded-full overflow-hidden bg-white/50 border border-[#EBE6DF] flex items-center justify-center text-[#2B403B]">
+							<LogoIcon className="w-8 h-8" />
 						</div>
-						<div className="text-xl font-bold tracking-wide text-[#2B403B]">
-							{business.brand}
+						<div className="flex flex-col ml-1">
+							<span className={`text-2xl font-bold tracking-wide text-[#2B403B] leading-none ${logoFont.className}`}>{business.brand}</span>
+							<span className="text-[0.7rem] font-semibold tracking-widest text-[#2B403B]/80 uppercase leading-none mt-1">Hyvinvointi</span>
 						</div>
 					</div>
 

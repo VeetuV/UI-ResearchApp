@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Mada, Marcellus_SC } from "next/font/google";
 import { useEffect, useState } from "react";
 import { useVariant } from "@/lib/VariantContext";
+import LogoIcon from "@/components/LogoIcon";
 
 const titleFont = Marcellus_SC({
 	weight: "400",
@@ -20,7 +21,7 @@ const bodyFont = Mada({
 const pageContent = {
 	fi: {
 		nav: ["Palvelut", "Tiimi", "Kokemuksia", "Yhteystiedot"],
-		heroTitle: "Hyvinvointikeskus Bloom, Tampere",
+		heroTitle: "Harmonia hyvinvointi, Tampere",
 		heroSubtitle: "Ammattitaitoista hoitoa kehollesi ja mielellesi",
 		heroHours: "Ma-pe 9-18, la 10-16, su suljettu",
 		booking: "Ajanvaraus",
@@ -77,12 +78,12 @@ const pageContent = {
 		mapAlt: "Karttanäkymä toimipisteen alueesta",
 		welcomePopupAlt: "Tarjousponnahdusikkuna",
 		newsletterPopupAlt: "Uutiskirjeponnahdusikkuna",
-		facebook: "Hyvinvointikeskus Bloom",
-		instagram: "@bloomwellness",
+		facebook: "Harmonia hyvinvointi",
+		instagram: "@harmoniawellness",
 	},
 	en: {
 		nav: ["Services", "Team", "Testimonials", "Contact"],
-		heroTitle: "Wellness Center Bloom, Tampere",
+		heroTitle: "Harmonia Wellness, Tampere",
 		heroSubtitle: "Professional care for your body and mind",
 		heroHours: "Mon-Fri 9-18, Sat 10-16, Sun closed",
 		booking: "Book now",
@@ -139,8 +140,8 @@ const pageContent = {
 		mapAlt: "Map view near the clinic",
 		welcomePopupAlt: "Offer popup",
 		newsletterPopupAlt: "Newsletter popup",
-		facebook: "Wellness Center Bloom",
-		instagram: "@bloomwellness",
+		facebook: "Harmonia Wellness",
+		instagram: "@harmoniawellness",
 	},
 } as const;
 
@@ -247,8 +248,8 @@ export default function StudyPage3() {
 			<header className="sticky top-0 z-10 border-b border-[#7f679f] bg-[#7d58ae] text-white">
 				<div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-3 py-2 sm:px-6">
 					<div className="flex items-center gap-3">
-						<div className="rounded-full bg-white/90 p-1.5">
-							<Image src="/logo.png" alt="Bloom" width={40} height={40} className="h-10 w-10 rounded-full" />
+						<div className="rounded-full bg-white/90 p-1.5 text-[#7d58ae]">
+							<LogoIcon className="h-10 w-10" />
 						</div>
 						<nav className={`${titleFont.className} hidden items-center gap-6 text-sm uppercase tracking-wide md:flex`}>
 							<a href="#services" className="hover:opacity-85">

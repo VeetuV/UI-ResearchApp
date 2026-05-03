@@ -2,11 +2,11 @@ import type { StudyGroup } from "@/lib/VariantContext";
 
 export const siteData = {
 	fi: {
-		siteName: "Hyvinvointikeskus",
-		brand: "Hyvinvointikeskus",
+		siteName: "Harmonia hyvinvointi",
+		brand: "Harmonia",
 		address: "Hämeenkatu 12 A, 33100 Tampere",
 		phone: "040 123 4567",
-		email: "info@hyvinvointikeskustampere.fi",
+		email: "info@harmonia.fi",
 		employees: [
 			{
 				id: "e1",
@@ -46,11 +46,11 @@ export const siteData = {
 		],
 	},
 	en: {
-		siteName: "Wellness Center",
-		brand: "Wellness Center",
+		siteName: "Harmonia Wellness",
+		brand: "Harmonia",
 		address: "Hämeenkatu 12 A, 33100 Tampere",
 		phone: "+358 40 123 4567",
-		email: "info@hyvinvointikeskustampere.fi",
+		email: "info@harmonia.fi",
 		employees: [
 			{
 				id: "e1",

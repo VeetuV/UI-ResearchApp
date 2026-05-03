@@ -5,12 +5,16 @@ import { useLocale } from "@/lib/LocaleContext";
 import { useVariant } from "@/lib/VariantContext";
 import Image from "next/image";
 import { siteData } from "@/lib/shared-data";
+import LogoIcon from "@/components/LogoIcon";
+import { Playfair_Display } from "next/font/google";
+
+const logoFont = Playfair_Display({ subsets: ["latin"], weight: ["600", "700"] });
 
 const pageContent = {
   fi: {
     nav: ["Valikko", "Hieronnat", "Palvelut", "Yrityksille", "Meistä"],
     teamDescription:
-      "Bloom-tiimin vahvuus on monipuolinen asiantuntemus. Kaikki terapeuttimme ovat Valviran laillistamia terveydenhuollon ammattilaisia, jotka sitoutuvat korkealaatuiseen hoitoon ja ammattitaitonsa jatkuvaan kehittämiseen. Tavoitteemme on aina tarjota sinulle yksilöllinen hoitosuunnitelma, joka tukee juuri sinun hyvinvointiasi.",
+      "Harmonia-tiimin vahvuus on monipuolinen asiantuntemus. Kaikki terapeuttimme ovat Valviran laillistamia terveydenhuollon ammattilaisia, jotka sitoutuvat korkealaatuiseen hoitoon ja ammattitaitonsa jatkuvaan kehittämiseen. Tavoitteemme on aina tarjota sinulle yksilöllinen hoitosuunnitelma, joka tukee juuri sinun hyvinvointiasi.",
     booking: "Varaa aika",
     bookingNav: ["Palvelut", "Aika", "Asiakastiedot", "Maksu"],
     cardDesc:
@@ -84,14 +88,14 @@ const pageContent = {
     footer: ["Tietosuoja", "Käyttöehdot", "Saavutettavuus"],
     phonePricing: "0,39 €/min",
     phoneOpenHours: "ma-pe 9-14",
-    footerCopyright: "Hyvinvointikeskus. Kaikki oikeudet pidätetään.",
+    footerCopyright: "Harmonia. Kaikki oikeudet pidätetään.",
     confirmationAlert: "Varaus onnistui!",
     ad: "Mainos",
   },
   en: {
     nav: ["Menu", "Massages", "Services", "To companies", "About us"],
     teamDescription:
-      "The strength of the Bloom team is its diverse expertise. All our therapists are Valvira‑licensed healthcare professionals who are committed to high‑quality care and the continuous development of their skills. Our goal is always to offer you an individual treatment plan that supports your well‑being.",
+      "The strength of the Harmonia team is its diverse expertise. All our therapists are Valvira‑licensed healthcare professionals who are committed to high‑quality care and the continuous development of their skills. Our goal is always to offer you an individual treatment plan that supports your well‑being.",
     booking: "Book an appointment",
     bookingNav: ["Services", "Time", "Customer information", "Payment"],
     cardDesc:
@@ -165,7 +169,7 @@ const pageContent = {
     footer: ["Privacy policy", "Terms of use", "Accessibility"],
     phonePricing: "0.39 €/min",
     phoneOpenHours: "Mon–Fri 9–14",
-    footerCopyright: "Wellness Center. All rights reserved.",
+    footerCopyright: "Harmonia. All rights reserved.",
     confirmationAlert: "Reservation complete!",
     ad: "Ad",
   },
@@ -251,14 +255,9 @@ export default function Studypage4() {
         className={`bg-white shadow-sm border-b border-gray-200 z-50 ${isSticky ? "sticky top-0" : "relative"}`}
       >
         <div className="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="text-2xl font-semibold text-blue-700 tracking-wide">
-            <Image
-              src="/logo.png"
-              alt="Bloom"
-              width={40}
-              height={40}
-              className="h-20 w-auto rounded-full"
-            />
+          <div className="text-2xl font-semibold text-blue-700 tracking-wide flex items-center">
+            <LogoIcon className="h-16 w-16 text-blue-700" />
+            <span className={`ml-2 ${logoFont.className}`}>Harmonia</span>
           </div>
 
           <div className="relative">
@@ -843,13 +842,10 @@ export default function Studypage4() {
       <footer className="bg-blue-800 text-white py-10">
         <div className="max-w-5xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
           <div>
-            <Image
-              src="/logo.png"
-              alt="Bloom"
-              width={40}
-              height={40}
-              className="h-20 w-auto rounded-full"
-            />
+          <div className="text-2xl font-semibold text-white tracking-wide flex items-center">
+            <LogoIcon className="h-16 w-16 text-white" />
+            <span className={`ml-2 ${logoFont.className}`}>Harmonia</span>
+          </div>
           </div>
           <div className="mt-4 md:mt-0 space-x-6 text-sm">
             <a href="#" className="hover:text-white transition-colors">

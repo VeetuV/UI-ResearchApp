@@ -34,6 +34,7 @@ type Messages = {
   };
   floating: {
     openSurvey: string;
+    hint: string;
   };
   pages: {
     page1Title: string;
@@ -54,8 +55,8 @@ const messages: Record<Locale, Messages> = {
     },
     locale: {
       label: "Kieli",
-      finnish: "Suomi",
-      english: "Englanti",
+      finnish: "Suomi 🇫🇮",
+      english: "Englanti 🇬🇧",
     },
     corporate: {
       badge: "Esimerkkisivu",
@@ -77,6 +78,7 @@ const messages: Record<Locale, Messages> = {
     },
     floating: {
       openSurvey: "Avaa kysely",
+      hint: "Paina tästä, kun olet valmis vastaamaan kysymyksiin.",
     },
     pages: {
       page1Title: "Tutkimussivu 1",
@@ -96,8 +98,8 @@ const messages: Record<Locale, Messages> = {
     },
     locale: {
       label: "Language",
-      finnish: "Finnish",
-      english: "English",
+      finnish: "Finnish 🇫🇮",
+      english: "English 🇬🇧",
     },
     corporate: {
       badge: "Sample Page",
@@ -119,6 +121,7 @@ const messages: Record<Locale, Messages> = {
     },
     floating: {
       openSurvey: "Open Survey",
+      hint: "Press here when you are ready to answer the questions.",
     },
     pages: {
       page1Title: "Study Page 1",

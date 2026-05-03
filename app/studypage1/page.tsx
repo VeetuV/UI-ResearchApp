@@ -4,6 +4,9 @@ import { useLocale } from "@/lib/LocaleContext";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { useVariant } from "@/lib/VariantContext";
+import { Playfair_Display } from "next/font/google";
+
+const logoFont = Playfair_Display({ subsets: ["latin"], weight: ["600", "700"] });
 
 /* ────────────────────────────────────────────
    Inline bilingual content for the Hieronta page
@@ -11,7 +14,7 @@ import { useVariant } from "@/lib/VariantContext";
 const content = {
 	fi: {
 		nav: {
-			brand: "Hieronta",
+			brand: "Harmonia",
 			links: ["Palvelut", "Meistä", "Arvostelut", "Hinnasto", "Yhteystiedot"],
 		},
 		hero: {
@@ -69,7 +72,7 @@ const content = {
 		about: {
 			badge: "Meistä",
 			title: "Vuosien kokemus hyvinvoinnin edistämisessä",
-			body: "Hieronta on toiminut Tampereen keskustassa jo yli 10 vuoden ajan. Koulutetut hierojamme yhdistävät perinteiset tekniikat moderneihin hoitomenetelmiin. Uskomme, että jokainen ansaitsee hetken rauhoittumiseen kiireisen arjen keskellä.",
+			body: "Harmonia on toiminut Tampereen keskustassa jo yli 10 vuoden ajan. Koulutetut hierojamme yhdistävät perinteiset tekniikat moderneihin hoitomenetelmiin. Uskomme, että jokainen ansaitsee hetken rauhoittumiseen kiireisen arjen keskellä.",
 			stats: [
 				{ value: "10+", label: "Vuotta kokemusta" },
 				{ value: "5 000+", label: "Tyytyväistä asiakasta" },
@@ -148,7 +151,7 @@ const content = {
 			title: "Ota yhteyttä tai varaa aika",
 			address: "Hämeenkatu 12 A, 33100 Tampere",
 			phone: "+358 40 123 4567",
-			email: "info@hieronta.fi",
+			email: "info@harmonia.fi",
 			hours: ["Ma–Pe: 8:00–20:00", "La: 10:00–16:00", "Su: Suljettu"],
 			formName: "Nimi",
 			formEmail: "Sähköposti",
@@ -156,13 +159,13 @@ const content = {
 			formSubmit: "Lähetä viesti",
 		},
 		footer: {
-			copy: "© 2025 Hieronta. Kaikki oikeudet pidätetään.",
+			copy: "© 2025 Harmonia. Kaikki oikeudet pidätetään.",
 			links: ["Tietosuoja", "Käyttöehdot", "Saavutettavuus"],
 		},
 	},
 	en: {
 		nav: {
-			brand: "Hieronta",
+			brand: "Harmonia",
 			links: [
 				"Services",
 				"About",
@@ -226,7 +229,7 @@ const content = {
 		about: {
 			badge: "About Us",
 			title: "Years of experience promoting wellbeing",
-			body: "Hieronta has been operating in the centre of Tampere for over 10 years. Our certified therapists combine traditional techniques with modern treatment methods. We believe everyone deserves a moment of calm in the middle of a busy day.",
+			body: "Harmonia has been operating in the centre of Tampere for over 10 years. Our certified therapists combine traditional techniques with modern treatment methods. We believe everyone deserves a moment of calm in the middle of a busy day.",
 			stats: [
 				{ value: "10+", label: "Years of experience" },
 				{ value: "5,000+", label: "Happy clients" },
@@ -421,7 +424,7 @@ export default function StudyPage1() {
 					{/* Brand */}
 					<button
 						onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-						className="text-2xl font-bold tracking-tight text-[#6B4F3A]"
+						className={`text-2xl font-bold tracking-tight text-[#6B4F3A] ${logoFont.className}`}
 					>
 						{t.nav.brand}
 					</button>

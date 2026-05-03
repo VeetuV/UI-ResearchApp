@@ -3,6 +3,7 @@
 import { useLocale } from "@/lib/LocaleContext";
 import { useVariant } from "@/lib/VariantContext";
 import { usePathname, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 const studyRoutes = [
   "/studypage1",
@@ -26,9 +27,26 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
   const hasNext =
     currentRouteIndex >= 0 && currentRouteIndex < studyRoutes.length - 1;
 
+  const [maxRouteIndex, setMaxRouteIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentRouteIndex < 0) return;
+    
+    const saved = sessionStorage.getItem("ux-study-max-route");
+    const savedMax = saved ? parseInt(saved, 10) : 0;
+    const newMax = Math.max(savedMax, currentRouteIndex);
+    
+    setMaxRouteIndex(newMax);
+    sessionStorage.setItem("ux-study-max-route", newMax.toString());
+  }, [currentRouteIndex]);
+
   const handleBack = () => {
     onClose();
-    router.push("/");
+    if (currentRouteIndex > 0) {
+      router.push(studyRoutes[currentRouteIndex - 1]);
+    } else {
+      router.push("/");
+    }
   };
 
   const handleNext = () => {
@@ -61,9 +79,10 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
           </div>
           <button
             onClick={onClose}
-            className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700"
+            className="rounded-md p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500"
+            aria-label={messages.survey.close}
           >
-            {messages.survey.close}
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
         </div>
 
@@ -99,6 +118,39 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
           >
             {messages.survey.back}
           </button>
+
+          <div className="flex gap-2">
+            {studyRoutes.map((route, idx) => {
+              // A button is accessible if it's the current page, previously visited, or exactly one step ahead of the furthest visited page
+              const isGreyedOut = idx > maxRouteIndex + 1;
+              return (
+                <button
+                  key={route}
+                  onClick={() => {
+                    onClose();
+                    router.push(route);
+                  }}
+                  disabled={isGreyedOut}
+                  className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium transition ${
+                    currentRouteIndex === idx
+                      ? "bg-slate-900 text-white"
+                      : isGreyedOut
+                      ? "bg-slate-100 text-slate-400 cursor-not-allowed"
+                      : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                  }`}
+                >
+                  {idx + 1}
+                </button>
+              );
+            })}
+            <button
+              disabled
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 text-sm font-medium cursor-not-allowed"
+            >
+              5
+            </button>
+          </div>
+
           <button
             onClick={handleNext}
             disabled={!hasNext}
